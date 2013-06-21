@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
-import com.lilleman.engine.lighting.utils.Utils;
+/*import com.lilleman.engine.lighting.utils.Utils;
 
 public class ShadowMap {
 	PerspectiveCamera cam;
@@ -136,3 +136,4 @@ public class ShadowMap {
 		void renderFull(ShaderProgram shader);
 	}
 }
+*/
