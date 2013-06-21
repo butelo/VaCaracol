@@ -12,7 +12,7 @@ public class Main {
 		cfg.height = 320;
 		cfg.vSyncEnabled= true;
 		
-		new LwjglApplication(new VaCaracol(), cfg);
+		new LwjglApplication(new CowSnail(), cfg);
 
 		
 		
