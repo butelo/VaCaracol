@@ -36,12 +36,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.tests.utils.GdxTest;
+/*import com.badlogic.gdx.tests.utils.GdxTest;
 import com.badlogic.gdx.tests.utils.PerspectiveCamController;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
 public class ShadowMappingTest extends GdxTest {
-/*
+
 	@Override
 	public boolean needsGL20 () {
 		return true;
@@ -237,5 +237,6 @@ public class ShadowMappingTest extends GdxTest {
 		shadowMapShader.dispose();
 		currShader.dispose();
 		shadowMap.dispose();
-	} */
+	} 
 }
+*/
