@@ -23,7 +23,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.graphics.g3d.model.Node;
 
-public class CowSnail implements ApplicationListener {public PerspectiveCamera cam;
+public class Anitest implements ApplicationListener {public PerspectiveCamera cam;
 public CameraInputController camController;
 public ModelBatch modelBatch;
 public AssetManager assets;
@@ -65,7 +65,8 @@ public void create () {
 //    assets.load("data/table.obj", Model.class);
 //    assets.load("data/floor.obj", Model.class);
 
-    assets.load("data/untitled.g3db", Model.class);
+//    assets.load("data/untitled.g3db", Model.class);
+    assets.load("data/anitest.g3db", Model.class);
 
     
 //    assets.load("data/block.obj", Model.class);
@@ -76,7 +77,7 @@ public void create () {
 }
 
 private void doneLoading() {
-	Model model = assets.get("data/untitled.g3db", Model.class);
+	Model model = assets.get("data/anitest.g3db", Model.class);
 	
 	
     book = new ModelInstance(model, "book");

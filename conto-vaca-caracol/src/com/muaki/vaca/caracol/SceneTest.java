@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.g3d.Renderable;
 import com.badlogic.gdx.graphics.g3d.Shader;
 import com.badlogic.gdx.graphics.g3d.lights.DirectionalLight;
 import com.badlogic.gdx.graphics.g3d.lights.Lights;
+import com.badlogic.gdx.graphics.g3d.lights.PointLight;
 import com.badlogic.gdx.graphics.g3d.loader.G3dModelLoader;
 import com.badlogic.gdx.graphics.g3d.materials.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.materials.Material;
@@ -56,7 +57,7 @@ public class SceneTest implements ApplicationListener {
         modelBatch = new ModelBatch();
         lights = new Lights();
         lights.ambientLight.set(0.4f, 0.4f, 0.4f, 1f);
-        lights.add(new DirectionalLight().set(0.8f, 0.8f, 0.8f, -1f, -0.8f, -0.2f));
+        lights.add(new PointLight().set(0.8f, 0.8f, 0.8f, -1f, -0.8f, -0.2f, 20));
          
         cam = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         cam.position.set(2f, 2f, 2f);
@@ -148,7 +149,7 @@ public class SceneTest implements ApplicationListener {
     	*/
     	
     	/*
-    	 //NOVO MƒTODO USANDO O SCENE LOADER
+    	 //NOVO Mï¿½TODO USANDO O SCENE LOADER
     	   
         Model model = assets.get("data/invaders.g3db", Model.class);
         ship = new ModelInstance(model, "ship");

@@ -8,11 +8,11 @@ public class Main {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.useGL20 = true;
 		cfg.samples=3;
-		cfg.width = 480;
-		cfg.height = 320;
+		cfg.width = 1025;
+		cfg.height = 769;
 		cfg.vSyncEnabled= true;
 		
-		new LwjglApplication(new SceneTest(), cfg);
+		new LwjglApplication(new CowSnail(), cfg);
 
 		
 		

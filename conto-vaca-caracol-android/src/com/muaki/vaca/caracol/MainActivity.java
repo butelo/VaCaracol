@@ -14,6 +14,6 @@ public class MainActivity extends AndroidApplication {
         cfg.useGL20 = true;
         cfg.numSamples = 2; 
         
-        initialize(new SceneTest(), cfg);
+        initialize(new CowSnail(), cfg);
     }
 }
