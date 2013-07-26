@@ -18,6 +18,7 @@ import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.graphics.g3d.lights.BaseLight;
 import com.badlogic.gdx.graphics.g3d.lights.DirectionalLight;
 import com.badlogic.gdx.graphics.g3d.lights.Lights;
+import com.badlogic.gdx.graphics.g3d.lights.PointLight;
 import com.badlogic.gdx.graphics.g3d.loader.ObjLoader;
 import com.badlogic.gdx.graphics.g3d.materials.BlendingAttribute;
 import com.badlogic.gdx.graphics.g3d.materials.ColorAttribute;
@@ -49,6 +50,8 @@ public ModelInstance table;
 public ModelInstance floor;
 public ModelInstance vaquita;
 public ModelInstance bed;
+public ModelInstance caracol;
+
 public ShaderProgram shader;
 TextureAttribute textureAttribute;
 ColorAttribute colorAttribute;
@@ -106,11 +109,12 @@ public void create () {
     modelBatch = new ModelBatch();
     lights = new Lights();
     lights.ambientLight.set(0.4f, 0.4f, 0.4f, 1f);
+//    lights.add(new DirectionalLight().set(0.8f, 0.8f, 0.8f, -1f, -0.8f, -0.2f));
+    
     lights.add(new DirectionalLight().set(0.8f, 0.8f, 0.8f, -1f, -0.8f, -0.2f));
 
-
-    lights.add(new DirectionalLight().set(0.8f, 0.8f, 0.8f, -1f, -0.8f, -0.2f));
-
+    lights.add(new PointLight().set(0.8f, 0.8f, 0.8f, -0.15267295f,  8.6140175f, 9.30487f, 40));
+    
     
     cam = new PerspectiveCamera(35, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     cam.position.set(-0.15267295f,  8.6140175f, 9.30487f);
@@ -175,9 +179,23 @@ private void doneLoading() {
 	blendingAttribute = new BlendingAttribute(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 
 	material = vaquita.materials.get(0);
-//	material.set(blendingAttribute);
+	material.set(blendingAttribute);
 
   instances.add(vaquita);
+  
+  
+  caracol = new ModelInstance(model, "caracol");
+//floor.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
+  
+  
+//	textureAttribute = new TextureAttribute(TextureAttribute.Diffuse, texture);
+//	colorAttribute = new ColorAttribute(ColorAttribute.Diffuse, Color.ORANGE);
+//	blendingAttribute = new BlendingAttribute(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+//
+	material = caracol.materials.get(0);
+	material.set(blendingAttribute);
+
+instances.add(caracol);
 
 //    Model blockModel = assets.get("data/block.obj", Model.class);
 //    for (float x = -5f; x <= 5f; x += 2f) {
