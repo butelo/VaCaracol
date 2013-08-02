@@ -1,6 +1,7 @@
 package com.muaki.vaca.caracol;
 
 import com.badlogic.gdx.ApplicationListener;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.ModelLoader;
@@ -8,14 +9,20 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Mesh;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.VertexAttribute;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.VertexAttributes.Usage;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
+import com.badlogic.gdx.graphics.g3d.decals.Decal;
+import com.badlogic.gdx.graphics.g3d.decals.DecalBatch;
 import com.badlogic.gdx.graphics.g3d.lights.BaseLight;
 import com.badlogic.gdx.graphics.g3d.lights.DirectionalLight;
 import com.badlogic.gdx.graphics.g3d.lights.Lights;
@@ -23,18 +30,20 @@ import com.badlogic.gdx.graphics.g3d.lights.PointLight;
 import com.badlogic.gdx.graphics.g3d.loader.ObjLoader;
 import com.badlogic.gdx.graphics.g3d.materials.BlendingAttribute;
 import com.badlogic.gdx.graphics.g3d.materials.ColorAttribute;
+import com.badlogic.gdx.graphics.g3d.materials.IntAttribute;
 import com.badlogic.gdx.graphics.g3d.materials.Material;
 import com.badlogic.gdx.graphics.g3d.materials.TextureAttribute;
 import com.badlogic.gdx.graphics.g3d.utils.CameraInputController;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 //import com.badlogic.gdx.scenes.scene2d.ui.Tree.Node;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.graphics.g3d.model.Node;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
-public class CowSnail implements ApplicationListener {
+public class CowSnail extends Game {
 	public PerspectiveCamera cam;
 	public CameraInputController camController;
 	public ModelBatch modelBatch;
@@ -42,7 +51,10 @@ public class CowSnail implements ApplicationListener {
 	public Array<ModelInstance> instances = new Array<ModelInstance>();
 	public Lights lights;
 	public boolean loading;
-
+	private Sprite sprite;
+	
+	DecalBatch decalBatch;
+	Decal esprait;
 
 	public ModelInstance book;
 	public ModelInstance space;
@@ -52,9 +64,12 @@ public class CowSnail implements ApplicationListener {
 	public ModelInstance bed;
 	public ModelInstance caracol;
 
+
 	TextureAttribute textureAttribute;
 	ColorAttribute colorAttribute;
 	BlendingAttribute blendingAttribute;
+	IntAttribute backfaceculling;
+	
 	Material material;
 	private SpriteBatch batch;
 
@@ -62,13 +77,29 @@ public class CowSnail implements ApplicationListener {
 	private float movementIncrement = 0.0006f;
 
 	public Texture texture;
+	Texture rgba8888;
+
 
 	@Override
 	public void create() {
 
+		
+		
+
+		
+		
+
 		batch = new SpriteBatch();
+		decalBatch = new DecalBatch();
 
 		texture = new Texture(Gdx.files.internal("data/vaquita.png"));
+		
+		
+		rgba8888 = new Texture("data/bobargb8888-32x32.png");
+		
+		
+		esprait = Decal.newDecal(2, 2, new TextureRegion(rgba8888), true);
+		
 
 		modelBatch = new ModelBatch();
 		lights = new Lights();
@@ -138,10 +169,14 @@ public class CowSnail implements ApplicationListener {
 				texture);
 		colorAttribute = new ColorAttribute(ColorAttribute.Diffuse,
 				Color.ORANGE);
-		blendingAttribute = new BlendingAttribute(GL20.GL_SRC_ALPHA,
+		blendingAttribute = new BlendingAttribute(GL20.GL_SRC_ALPHA, 
 				GL20.GL_ONE_MINUS_SRC_ALPHA);
-
+	    backfaceculling =new IntAttribute(IntAttribute.CullFace, GL20.GL_BACK);
+	    
+	    
 		material = vaquita.materials.get(0);
+	    material.set(new IntAttribute(IntAttribute.CullFace, 0));
+
 		material.set(blendingAttribute);
 
 		instances.add(vaquita);
@@ -158,6 +193,7 @@ public class CowSnail implements ApplicationListener {
 		//
 		material = caracol.materials.get(0);
 		material.set(blendingAttribute);
+	    material.set(new IntAttribute(IntAttribute.CullFace, 0));
 
 		instances.add(caracol);
 
@@ -188,6 +224,14 @@ public class CowSnail implements ApplicationListener {
 	@Override
 	public void render() {
 		texture.bind();
+		
+		
+	
+		
+		
+		
+		
+		
 
 		total += 1;
 		if (total > 500) {
@@ -217,6 +261,14 @@ public class CowSnail implements ApplicationListener {
 		// +cam.position.y+" z: " +cam.position.z );
 
 		modelBatch.end();
+		
+		batch.begin();
+		batch.draw(rgba8888, 60, 0);
+		batch.end();
+		
+		
+//		decalBatch.add(esprait);
+//        decalBatch.flush();
 
 	}
 
@@ -226,6 +278,10 @@ public class CowSnail implements ApplicationListener {
 		instances.clear();
 		assets.dispose();
 		batch.dispose();
+		
+		
+		rgba8888.dispose();
+		
 
 	}
 
