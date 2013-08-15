@@ -36,6 +36,7 @@ import com.badlogic.gdx.graphics.g3d.materials.TextureAttribute;
 import com.badlogic.gdx.graphics.g3d.utils.CameraInputController;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 //import com.badlogic.gdx.scenes.scene2d.ui.Tree.Node;
@@ -43,7 +44,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.graphics.g3d.model.Node;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
-public class CowSnail extends Game {
+public class CowSnail2 extends Game {
 	public PerspectiveCamera cam;
 	public CameraInputController camController;
 	public ModelBatch modelBatch;
@@ -63,8 +64,11 @@ public class CowSnail extends Game {
 	public ModelInstance vaquita;
 	public ModelInstance bed;
 	public ModelInstance caracol;
+	
+	float angleX = -90;
 
-
+	float rotation;
+	
 	TextureAttribute textureAttribute;
 	ColorAttribute colorAttribute;
 	BlendingAttribute blendingAttribute;
@@ -75,9 +79,11 @@ public class CowSnail extends Game {
 
 	private int total = 0;
 	private float movementIncrement = 0.0006f;
+	float rotationtotal;
 
 	public Texture texture;
 	Texture rgba8888;
+	Model model;
 
 
 	@Override
@@ -140,7 +146,7 @@ public class CowSnail extends Game {
 	}
 
 	private void doneLoading() {
-		Model model = assets.get("data/roomBI.g3db", Model.class);
+		 model = assets.get("data/roomBI.g3db", Model.class);
 
 		book = new ModelInstance(model, "book");
 		// book.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
@@ -160,11 +166,20 @@ public class CowSnail extends Game {
 
 		floor = new ModelInstance(model, "floor");
 		// floor.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
+		
 		instances.add(floor);
 
 		vaquita = new ModelInstance(model, "vaca");
-		// floor.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
-
+		Node node = vaquita.getNode("vaca");
+		
+		vaquita.transform.set(node.globalTransform);
+        node.translation.set(0,0,0);
+        node.scale.set(1,1,1);
+       
+		node.rotation.idt();
+        vaquita.calculateTransforms();
+		
+		
 		textureAttribute = new TextureAttribute(TextureAttribute.Diffuse,
 				texture);
 		colorAttribute = new ColorAttribute(ColorAttribute.Diffuse,
@@ -178,6 +193,16 @@ public class CowSnail extends Game {
 	    material.set(new IntAttribute(IntAttribute.CullFace, 0));
 
 		material.set(blendingAttribute);
+		
+	 vaquita.transform.rotate(Vector3.X, angleX);
+		
+	 
+		
+		
+		
+		
+		
+		
 
 		instances.add(vaquita);
 
@@ -223,6 +248,8 @@ public class CowSnail extends Game {
 
 	@Override
 	public void render() {
+		
+		
 		texture.bind();
 		
 		
@@ -237,25 +264,56 @@ public class CowSnail extends Game {
 		if (total > 500) {
 			movementIncrement = -movementIncrement;
 			total = -200;
+			
+
 		}
 
-		if (loading && assets.update())
+		if (loading && assets.update()){
+			
 			doneLoading();
+		}
+		
+		
 		camController.update();
 		cam.rotate(movementIncrement * 20, 0, 1, 0);
 		cam.translate(movementIncrement, 0, movementIncrement);
 		cam.update();
 
+
+
+		
+		
+
+
 		Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(),
 				Gdx.graphics.getHeight());
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+		
 
+		
+		
 		modelBatch.begin(cam);
-
-		for (ModelInstance instance : instances)
+		
+		for (ModelInstance instance : instances){
 			modelBatch.render(instance, lights);
-		if (space != null)
+			
+			 rotation = 10 * Gdx.graphics.getDeltaTime();
+			 
+			
+		if(rotationtotal<90){
+			vaquita.transform.rotate(Vector3.X, rotation);
+			 rotationtotal +=rotation;
+		}
+
+			
+		}
+
+		if (space != null){
 			modelBatch.render(space);
+		
+		}
+		
+
 
 		// System.out.println("x: " +cam.position.x +" y: "
 		// +cam.position.y+" z: " +cam.position.z );
@@ -266,11 +324,13 @@ public class CowSnail extends Game {
 		batch.draw(rgba8888, 60, 0);
 		batch.end();
 		
-		
+
 //		decalBatch.add(esprait);
 //        decalBatch.flush();
 
 	}
+
+
 
 	@Override
 	public void dispose() {

@@ -7,12 +7,12 @@ public class Main {
 	public static void main(String[] args) {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.useGL20 = true;
-		cfg.samples=3;
+		cfg.samples=	3;
 		cfg.width = 1025;
 		cfg.height = 769;
 		cfg.vSyncEnabled= true;
 		
-		new LwjglApplication(new CowSnail(), cfg);
-		
-	}
+		new LwjglApplication(new CowSnail2(), cfg);
+		 
+	}		
 }
