@@ -45,6 +45,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.graphics.g3d.model.Node;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.muaki.vaca.screens.MainScreen;
+import com.muaki.vaca.ui.ScreenMenuLayer;
 
 public class CowSnail extends Game {
 
@@ -52,7 +53,7 @@ public class CowSnail extends Game {
 
 	@Override
 	public void create() {
-		screen = new MainScreen();
+		screen = new ScreenMenuLayer();
 		setScreen(screen);
 		
 		
