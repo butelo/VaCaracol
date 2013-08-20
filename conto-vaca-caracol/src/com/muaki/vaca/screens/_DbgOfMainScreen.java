@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
@@ -35,9 +34,9 @@ public class _DbgOfMainScreen implements Screen {
 	public boolean loading;
 	public InputMultiplexer mpex;
 	public boolean clicadopadiante = false;
-	public FPSLogger fps;
 
-	
+	// XXX quitar o log dos frames
+	public FPSLogger fps;
 
 	public ModelInstance uno;
 	public ModelInstance dos;
@@ -58,14 +57,13 @@ public class _DbgOfMainScreen implements Screen {
 	IntAttribute backfaceculling;
 
 	Material material;
-	
 
 	private int total = 0;
 	private float movementIncrement = 0.0006f;
 	float rotationtotal;
 
 	public Texture texture;
-	
+
 	Model model;
 
 	@Override
@@ -102,42 +100,37 @@ public class _DbgOfMainScreen implements Screen {
 			if (rotationtotal < 90 & clicadopadiante) {
 				uno.transform.rotate(Vector3.X, rotation);
 				rotationtotal += rotation;
-				
+
 			}
-			
 
 		}
 
-
-
 		modelBatch.end();
 
-	
-fps.log();
+		// XXX quitar o log dos frames
+		fps.log();
 
-		
 	}
 
 	@Override
 	public void resize(int width, int height) {
-		
+
 	}
 
 	@Override
 	public void show() {
 		mpex = new InputMultiplexer();
-		
-		//XXX quitar ou poñer log
+
+		// XXX quitar o log dos frames
 		fps = new FPSLogger();
 		modelBatch = new ModelBatch();
-		
+
 		lights = new Lights();
 		lights.ambientLight.set(0.4f, 0.4f, 0.4f, 1f);
 		lights.add(new DirectionalLight().set(0.8f, 0.8f, 0.8f, -1f, -0.8f,
 				-0.2f));
 		lights.add(new PointLight().set(0.8f, 0.8f, 0.8f, -0.15267295f,
 				8.6140175f, 9.30487f, 40));
-		
 
 		cam = new PerspectiveCamera(35, Gdx.graphics.getWidth(),
 				Gdx.graphics.getHeight());
@@ -150,15 +143,13 @@ fps.log();
 		Gdx.input.setInputProcessor(camController);
 		mpex.addProcessor(camController);
 
-		assets = new AssetManager();	
+		assets = new AssetManager();
 		assets.load("data/follasdolibrotest.g3db", Model.class);
 
-
 		loading = true;
-		
+
 	}
-	
-	
+
 	private void doneLoading() {
 		model = assets.get("data/follasdolibrotest.g3db", Model.class);
 
@@ -238,32 +229,27 @@ fps.log();
 		seis.transform.rotate(Vector3.X, angleX);
 		instances.add(seis);
 
-
-
 		loading = false;
 	}
 
-
 	@Override
 	public void hide() {
-		
+
 	}
 
 	@Override
 	public void pause() {
-		
+
 	}
 
 	@Override
 	public void resume() {
-		
+
 	}
 
 	@Override
 	public void dispose() {
-		
+
 	}
-	
-	
-	
+
 }

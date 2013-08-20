@@ -1,139 +1,131 @@
 package com.muaki.vaca.copypastes;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Mesh;
-import com.badlogic.gdx.graphics.PerspectiveCamera;
-import com.badlogic.gdx.graphics.Pixmap.Format;
-import com.badlogic.gdx.graphics.glutils.FrameBuffer;
-import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 /*import com.lilleman.engine.lighting.utils.Utils;
 
-public class ShadowMap {
-	PerspectiveCamera cam;
+ public class ShadowMap {
+ PerspectiveCamera cam;
 
-	SpotLight light;
+ SpotLight light;
 
-	ShaderProgram depthRenderShader;
-	ShaderProgram shadowGenShader;
-	ShaderProgram shadowMapShader;
-	FrameBuffer shadowMap;
+ ShaderProgram depthRenderShader;
+ ShaderProgram shadowGenShader;
+ ShaderProgram shadowMapShader;
+ FrameBuffer shadowMap;
 
-	ShadowMapRenderer renderer;
+ ShadowMapRenderer renderer;
 
-	Mesh quad;
+ Mesh quad;
 
-	public ShadowMap() {
-		shadowMap = new FrameBuffer(Format.RGBA8888, 1024, 1024, true);
+ public ShadowMap() {
+ shadowMap = new FrameBuffer(Format.RGBA8888, 1024, 1024, true);
 
-		shadowGenShader = Utils.compileShader("data/depth.vert", "depth.frag");
-		shadowMapShader = Utils.compileShader("data/shadowmap.vert", "data/shadowmap.frag");
-		depthRenderShader = Utils.compileShader("depthRender.vert", "depthRender.frag");
+ shadowGenShader = Utils.compileShader("data/depth.vert", "depth.frag");
+ shadowMapShader = Utils.compileShader("data/shadowmap.vert", "data/shadowmap.frag");
+ depthRenderShader = Utils.compileShader("depthRender.vert", "depthRender.frag");
 
-		quad = Utils.generateQuad(0, 0, 0.25f, 0.25f);
-	}
+ quad = Utils.generateQuad(0, 0, 0.25f, 0.25f);
+ }
 
-	public void setLight(SpotLight light) {
-		this.light = light;
-	}
+ public void setLight(SpotLight light) {
+ this.light = light;
+ }
 
-	public void setRenderer(ShadowMapRenderer renderer) {
-		this.renderer = renderer;
-	}
+ public void setRenderer(ShadowMapRenderer renderer) {
+ this.renderer = renderer;
+ }
 
-	public void setCamera(PerspectiveCamera cam) {
-		this.cam = cam;
-	}
+ public void setCamera(PerspectiveCamera cam) {
+ this.cam = cam;
+ }
 
-	boolean renderDepthMap = true;
+ boolean renderDepthMap = true;
 
-	public void renderShadowMap(PerspectiveCamera lightCam) {
-		Gdx.gl20.glViewport(0, 0, shadowMap.getWidth(), shadowMap.getHeight());
+ public void renderShadowMap(PerspectiveCamera lightCam) {
+ Gdx.gl20.glViewport(0, 0, shadowMap.getWidth(), shadowMap.getHeight());
 
-		shadowMap.begin();
+ shadowMap.begin();
 
-		Gdx.gl.glClearColor(1, 1, 1, 0);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+ Gdx.gl.glClearColor(1, 1, 1, 0);
+ Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
-		Gdx.gl.glEnable(GL20.GL_CULL_FACE);
-		Gdx.gl.glCullFace(GL20.GL_FRONT);
+ Gdx.gl.glEnable(GL20.GL_CULL_FACE);
+ Gdx.gl.glCullFace(GL20.GL_FRONT);
 
-		shadowGenShader.begin();
+ shadowGenShader.begin();
 
-		shadowGenShader.setUniformMatrix("MVMatrix", lightCam.view);
-		shadowGenShader.setUniformMatrix("MVPMatrix", lightCam.combined);
+ shadowGenShader.setUniformMatrix("MVMatrix", lightCam.view);
+ shadowGenShader.setUniformMatrix("MVPMatrix", lightCam.combined);
 
-		shadowGenShader.setUniformf("InvFar", 1.0f / lightCam.far);
+ shadowGenShader.setUniformf("InvFar", 1.0f / lightCam.far);
 
-		renderer.renderShadowMap(shadowGenShader);
+ renderer.renderShadowMap(shadowGenShader);
 
-		shadowGenShader.end();
+ shadowGenShader.end();
 
-		Gdx.gl.glDisable(GL20.GL_CULL_FACE);
+ Gdx.gl.glDisable(GL20.GL_CULL_FACE);
 
-		shadowMap.end();
-	}
+ shadowMap.end();
+ }
 
-	public void setUniforms(Camera cam) {
-		shadowMapShader.setUniformMatrix("MVPMatrix", cam.combined);
+ public void setUniforms(Camera cam) {
+ shadowMapShader.setUniformMatrix("MVPMatrix", cam.combined);
 
-		shadowMapShader.setUniformMatrix("u_lightProjTrans", light.getCamera().combined);
+ shadowMapShader.setUniformMatrix("u_lightProjTrans", light.getCamera().combined);
 
-		int num = shadowMap.getColorBufferTexture().getTextureObjectHandle();
-		shadowMap.getColorBufferTexture().bind(num);
-		shadowMapShader.setUniformi("DepthMap", num);
+ int num = shadowMap.getColorBufferTexture().getTextureObjectHandle();
+ shadowMap.getColorBufferTexture().bind(num);
+ shadowMapShader.setUniformi("DepthMap", num);
 
-		light.setUniforms(shadowMapShader);
+ light.setUniforms(shadowMapShader);
 
-		shadowMapShader.setUniformf("InvFar", 1.0f / light.getCamera().far);
+ shadowMapShader.setUniformf("InvFar", 1.0f / light.getCamera().far);
 
-		shadowMapShader.setUniformf("CameraPosition", cam.position);
-	}
+ shadowMapShader.setUniformf("CameraPosition", cam.position);
+ }
 
-	public void render() {
-		Gdx.gl20.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+ public void render() {
+ Gdx.gl20.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-		Gdx.gl.glClearColor(0, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+ Gdx.gl.glClearColor(0, 0, 0, 1);
+ Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
-		// Shadowmap pass
-		renderShadowMap(light.getCamera());
+ // Shadowmap pass
+ renderShadowMap(light.getCamera());
 
-		// Render pass
-		shadowMapShader.begin();
-		
-		setUniforms(cam);
-		
-		renderer.renderFull(shadowMapShader);
+ // Render pass
+ shadowMapShader.begin();
 
-		shadowMapShader.end();
+ setUniforms(cam);
 
-		if (renderDepthMap) {
-			renderDepthMap();
-		}
-	}
+ renderer.renderFull(shadowMapShader);
 
-	public void renderDepthMap() {
-		depthRenderShader.begin();
+ shadowMapShader.end();
 
-		int num = shadowMap.getColorBufferTexture().getTextureObjectHandle();
-		shadowMap.getColorBufferTexture().bind(num);
-		depthRenderShader.setUniformi("DepthMap", num);
+ if (renderDepthMap) {
+ renderDepthMap();
+ }
+ }
 
-		quad.render(depthRenderShader, GL20.GL_TRIANGLE_FAN);
+ public void renderDepthMap() {
+ depthRenderShader.begin();
 
-		depthRenderShader.end();
-	}
+ int num = shadowMap.getColorBufferTexture().getTextureObjectHandle();
+ shadowMap.getColorBufferTexture().bind(num);
+ depthRenderShader.setUniformi("DepthMap", num);
 
-	public void dispose() {
-		shadowMap.dispose();
-	}
+ quad.render(depthRenderShader, GL20.GL_TRIANGLE_FAN);
 
-	public interface ShadowMapRenderer {
-		void renderShadowMap(ShaderProgram shader);
+ depthRenderShader.end();
+ }
 
-		void renderFull(ShaderProgram shader);
-	}
-}
-*/
+ public void dispose() {
+ shadowMap.dispose();
+ }
+
+ public interface ShadowMapRenderer {
+ void renderShadowMap(ShaderProgram shader);
+
+ void renderFull(ShaderProgram shader);
+ }
+ }
+ */

@@ -38,11 +38,12 @@ public class SimpleDecalTest extends Game {
 	CameraInputController controller;
 	FPSLogger logger = new FPSLogger();
 
-	public void create () {
+	public void create() {
 		float width = Gdx.graphics.getWidth();
 		float height = Gdx.graphics.getHeight();
 
-		camera = new PerspectiveCamera(45, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		camera = new PerspectiveCamera(45, Gdx.graphics.getWidth(),
+				Gdx.graphics.getHeight());
 		camera.near = 1;
 		camera.far = 300;
 		camera.position.set(0, 0, 5);
@@ -51,9 +52,13 @@ public class SimpleDecalTest extends Game {
 		Gdx.input.setInputProcessor(controller);
 		batch = new DecalBatch(new CameraGroupStrategy(camera));
 
-		TextureRegion[] textures = {new TextureRegion(new Texture(Gdx.files.internal("data/egg.png"))),
-			new TextureRegion(new Texture(Gdx.files.internal("data/wheel.png"))),
-			new TextureRegion(new Texture(Gdx.files.internal("data/badlogic.jpg")))};
+		TextureRegion[] textures = {
+				new TextureRegion(new Texture(
+						Gdx.files.internal("data/egg.png"))),
+				new TextureRegion(new Texture(
+						Gdx.files.internal("data/wheel.png"))),
+				new TextureRegion(new Texture(
+						Gdx.files.internal("data/badlogic.jpg"))) };
 
 		Decal decal = Decal.newDecal(1, 1, textures[1]);
 		decal.setPosition(0, 0, 0);
@@ -79,7 +84,7 @@ public class SimpleDecalTest extends Game {
 	Vector3 dir = new Vector3();
 	private boolean billboard = true;
 
-	public void render () {
+	public void render() {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 		Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
 
@@ -88,8 +93,9 @@ public class SimpleDecalTest extends Game {
 			Decal decal = decals.get(i);
 			if (billboard) {
 				// billboarding for ortho cam :)
-// dir.set(-camera.direction.x, -camera.direction.y, -camera.direction.z);
-// decal.setRotation(dir, Vector3.Y);
+				// dir.set(-camera.direction.x, -camera.direction.y,
+				// -camera.direction.z);
+				// decal.setRotation(dir, Vector3.Y);
 
 				// billboarding for perspective cam
 				decal.lookAt(camera.position, camera.up);
@@ -101,9 +107,8 @@ public class SimpleDecalTest extends Game {
 	}
 
 	@Override
-	public void dispose () {
+	public void dispose() {
 		batch.dispose();
 	}
-
 
 }

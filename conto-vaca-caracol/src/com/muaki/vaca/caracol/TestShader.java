@@ -9,11 +9,10 @@ import com.badlogic.gdx.graphics.g3d.Shader;
 import com.badlogic.gdx.graphics.g3d.materials.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.utils.RenderContext;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
 public class TestShader implements Shader {
-	
+
 	public static class TestColorAttribute extends ColorAttribute {
 		public final static String DiffuseUAlias = "diffuseUColor";
 		public final static long DiffuseU = register(DiffuseUAlias);
@@ -24,13 +23,12 @@ public class TestShader implements Shader {
 		static {
 			Mask = Mask | DiffuseU | DiffuseV;
 		}
-		
-		public TestColorAttribute (long type, float r, float g, float b, float a) {
+
+		public TestColorAttribute(long type, float r, float g, float b, float a) {
 			super(type, r, g, b, a);
 		}
 	}
-	
-	
+
 	ShaderProgram program;
 	Camera camera;
 	RenderContext context;
@@ -38,11 +36,13 @@ public class TestShader implements Shader {
 	int u_worldTrans;
 	int u_colorU;
 	int u_colorV;
-	
+
 	@Override
-	public void init () {
-		String vert = Gdx.files.internal("data/shaders/test.vertex.glsl").readString();
-		String frag = Gdx.files.internal("data/shaders/test.fragment.glsl").readString();
+	public void init() {
+		String vert = Gdx.files.internal("data/shaders/test.vertex.glsl")
+				.readString();
+		String frag = Gdx.files.internal("data/shaders/test.fragment.glsl")
+				.readString();
 		program = new ShaderProgram(vert, frag);
 		if (!program.isCompiled())
 			throw new GdxRuntimeException(program.getLog());
@@ -50,14 +50,14 @@ public class TestShader implements Shader {
 		u_colorU = program.getUniformLocation("u_colorU");
 		u_colorV = program.getUniformLocation("u_colorV");
 	}
-	
+
 	@Override
-	public void dispose () {
+	public void dispose() {
 		program.dispose();
 	}
-	
+
 	@Override
-	public void begin (Camera camera, RenderContext context) {
+	public void begin(Camera camera, RenderContext context) {
 		this.camera = camera;
 		this.context = context;
 		program.begin();
@@ -65,34 +65,33 @@ public class TestShader implements Shader {
 		context.setDepthTest(true, GL20.GL_LEQUAL);
 		context.setCullFace(GL20.GL_BACK);
 	}
-	
+
 	@Override
-	public void render (Renderable renderable) {
+	public void render(Renderable renderable) {
 		program.setUniformMatrix(u_worldTrans, renderable.worldTransform);
-		Color colorU = ((ColorAttribute)renderable.material.get(TestColorAttribute.DiffuseU)).color;
-		Color colorV = ((ColorAttribute)renderable.material.get(TestColorAttribute.DiffuseV)).color;
+		Color colorU = ((ColorAttribute) renderable.material
+				.get(TestColorAttribute.DiffuseU)).color;
+		Color colorV = ((ColorAttribute) renderable.material
+				.get(TestColorAttribute.DiffuseV)).color;
 		program.setUniformf(u_colorU, colorU.r, colorU.g, colorU.b);
 		program.setUniformf(u_colorV, colorV.r, colorV.g, colorV.b);
-		renderable.mesh.render(program,
-			renderable.primitiveType,
-			renderable.meshPartOffset,
-			renderable.meshPartSize);
+		renderable.mesh.render(program, renderable.primitiveType,
+				renderable.meshPartOffset, renderable.meshPartSize);
 	}
-	
-	
 
-	
 	@Override
-	public void end () {
+	public void end() {
 		program.end();
 	}
-	
+
 	@Override
-	public int compareTo (Shader other) {
+	public int compareTo(Shader other) {
 		return 0;
 	}
+
 	@Override
-	public boolean canRender (Renderable renderable) {
-		return renderable.material.has(TestColorAttribute.DiffuseU | TestColorAttribute.DiffuseV);
+	public boolean canRender(Renderable renderable) {
+		return renderable.material.has(TestColorAttribute.DiffuseU
+				| TestColorAttribute.DiffuseV);
 	}
 }

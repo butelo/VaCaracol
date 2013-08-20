@@ -29,69 +29,55 @@ import com.badlogic.gdx.graphics.g3d.materials.Material;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.math.Vector3;
 
-public class RotationTest extends Game {	
+public class RotationTest extends Game {
 	Model modelo;
 	ModelInstance modelInstance;
-	ModelBatch modelBatch;	
-	Material material;	
+	ModelBatch modelBatch;
+	Material material;
 	Camera camera;
-	
-	
-	
-	
+
 	public AssetManager assets;
 	Model model;
 
 	@Override
-	public void create () {
-		
+	public void create() {
+
 		ModelBuilder builder = new ModelBuilder();
-		modelo = builder.createBox(1, 1, 1, new Material(), Usage.Position | Usage.Normal | Usage.TextureCoordinates);
-		
+		modelo = builder.createBox(1, 1, 1, new Material(), Usage.Position
+				| Usage.Normal | Usage.TextureCoordinates);
+
 		modelInstance = new ModelInstance(modelo);
-		
-		
-		
-		
+
 		assets = new AssetManager();
 		assets.load("data/roomBI.g3db", Model.class);
 
-		
-		
-		
 		modelBatch = new ModelBatch();
-		
+
 		camera = new PerspectiveCamera(45, 4, 4);
 		camera.position.set(3, 3, 3);
 		camera.direction.set(-1, -1, -1);
-		
-		
-		
-		 
-		
 
 	}
 
-
 	@Override
-	public void render () {
+	public void render() {
 
-		
-		Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(),
+				Gdx.graphics.getHeight());
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
-		
+
 		camera.update();
 
-		modelInstance.transform.rotate(Vector3.Y, 30 * Gdx.graphics.getDeltaTime());
+		modelInstance.transform.rotate(Vector3.Y,
+				30 * Gdx.graphics.getDeltaTime());
 
-		
 		modelBatch.begin(camera);
 		modelBatch.render(modelInstance);
 		modelBatch.end();
 	}
 
 	@Override
-	public void dispose () {
+	public void dispose() {
 		model.dispose();
 		modelBatch.dispose();
 	}

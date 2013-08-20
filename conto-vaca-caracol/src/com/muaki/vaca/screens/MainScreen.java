@@ -59,7 +59,6 @@ public class MainScreen implements Screen {
 
 	Material material;
 
-
 	private int total = 0;
 	private float movementIncrement = 0.0006f;
 	float rotationtotal;
@@ -82,7 +81,7 @@ public class MainScreen implements Screen {
 			doneLoading();
 		}
 
-//		camController.update();
+		// camController.update();
 		cam.rotate(movementIncrement * 20, 0, 1, 0);
 		cam.translate(movementIncrement, 0, movementIncrement);
 		cam.update();
@@ -131,7 +130,6 @@ public class MainScreen implements Screen {
 		lights = new Lights();
 		lights.ambientLight.set(0.4f, 0.4f, 0.4f, 1f);
 
-
 		lights.add(new DirectionalLight().set(0.8f, 0.8f, 0.8f, -1f, -0.8f,
 				-0.2f));
 
@@ -148,13 +146,11 @@ public class MainScreen implements Screen {
 		cam.update();
 
 		camController = new CameraInputController(cam);
-		
-		
-//		Gdx.input.setInputProcessor(camController);
-		
+
+		// Gdx.input.setInputProcessor(camController);
+
 		mpex.addProcessor(camController);
-		
-		
+
 		assets = new AssetManager();
 
 		assets.load("data/roomBI.g3db", Model.class);
@@ -261,7 +257,6 @@ public class MainScreen implements Screen {
 		modelBatch.dispose();
 		instances.clear();
 		assets.dispose();
-
 
 	}
 

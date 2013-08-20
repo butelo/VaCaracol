@@ -1,9 +1,8 @@
 package com.muaki.vaca.tween;
 
-import com.badlogic.gdx.graphics.Mesh;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-
 import aurelienribon.tweenengine.TweenAccessor;
+
+import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class SpriteAccessor implements TweenAccessor<Sprite> {
 
@@ -15,11 +14,7 @@ public class SpriteAccessor implements TweenAccessor<Sprite> {
 
 	@Override
 	public void setValues(Sprite target, int tweenType, float[] newValues) {
-		
+
 	}
-
-
-
-
 
 }

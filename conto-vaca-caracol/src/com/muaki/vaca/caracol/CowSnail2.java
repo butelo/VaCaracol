@@ -7,12 +7,9 @@ import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
-import com.badlogic.gdx.graphics.g3d.decals.Decal;
-import com.badlogic.gdx.graphics.g3d.decals.DecalBatch;
 import com.badlogic.gdx.graphics.g3d.lights.DirectionalLight;
 import com.badlogic.gdx.graphics.g3d.lights.Lights;
 import com.badlogic.gdx.graphics.g3d.lights.PointLight;
@@ -25,6 +22,7 @@ import com.badlogic.gdx.graphics.g3d.model.Node;
 import com.badlogic.gdx.graphics.g3d.utils.CameraInputController;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
+
 //import com.badlogic.gdx.scenes.scene2d.ui.Tree.Node;
 
 public class CowSnail2 extends Game {
@@ -36,8 +34,6 @@ public class CowSnail2 extends Game {
 	public Lights lights;
 	public boolean loading;
 	public FPSLogger fps;
-
-	
 
 	// public ModelInstance book;
 	// public ModelInstance space;
@@ -67,25 +63,23 @@ public class CowSnail2 extends Game {
 	IntAttribute backfaceculling;
 
 	Material material;
-	
 
 	private int total = 0;
 	private float movementIncrement = 0.0006f;
 	float rotationtotal;
 
 	public Texture texture;
-	
+
 	Model model;
 
 	@Override
 	public void create() {
 		fps = new FPSLogger();
-		
 
 		modelBatch = new ModelBatch();
 		lights = new Lights();
 		lights.ambientLight.set(0.4f, 0.4f, 0.4f, 1f);
-		
+
 		// lights.add(new DirectionalLight().set(0.8f, 0.8f, 0.8f, -1f, -0.8f,
 		// -0.2f));
 
@@ -382,8 +376,6 @@ public class CowSnail2 extends Game {
 
 		modelBatch.end();
 
-	
-
 		// decalBatch.add(esprait);
 		// decalBatch.flush();
 
@@ -394,9 +386,6 @@ public class CowSnail2 extends Game {
 		modelBatch.dispose();
 		instances.clear();
 		assets.dispose();
-		
-
-	
 
 	}
 
@@ -407,9 +396,8 @@ public class CowSnail2 extends Game {
 	@Override
 	public void resize(int width, int height) {
 
-		
-			System.out.println("resize");
-		
+		System.out.println("resize");
+
 	}
 
 	@Override
