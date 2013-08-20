@@ -120,7 +120,7 @@ public class SceneTest implements ApplicationListener {
     	
     	
     	/*
-    	 //VELLO METODO CARGANDO OBEJOTAS
+    	 // vello METODO CARGANDO OBEJOTAS
         ship = new ModelInstance(assets.get("data/ship.obj", Model.class));
         ship.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
         instances.add(ship);
@@ -149,7 +149,8 @@ public class SceneTest implements ApplicationListener {
     	*/
     	
     	/*
-    	 //NOVO M�TODO USANDO O SCENE LOADER
+
+    	   novo metodo usando o SCENE LOADER
     	   
         Model model = assets.get("data/invaders.g3db", Model.class);
         ship = new ModelInstance(model, "ship");

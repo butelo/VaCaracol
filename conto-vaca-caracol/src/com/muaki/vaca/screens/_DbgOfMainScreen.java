@@ -126,6 +126,8 @@ fps.log();
 	@Override
 	public void show() {
 		mpex = new InputMultiplexer();
+		
+		//XXX quitar ou poñer log
 		fps = new FPSLogger();
 		modelBatch = new ModelBatch();
 		
