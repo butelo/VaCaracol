@@ -15,6 +15,12 @@ public class Copy_2_of_MyContoLibGdx implements ApplicationListener {
 	// private StillModel book;
 	private Texture shipTexture;
 
+	private int total = 0;
+
+	private float movementIncrement = 0.0006f;
+
+	float[] direction = { 1, 0.5f, 0, 0 };
+
 	@Override
 	public void create() {
 		// book =
@@ -50,17 +56,9 @@ public class Copy_2_of_MyContoLibGdx implements ApplicationListener {
 		// nearSquare.setIndices(new short[] { 0, 1, 2, 3});
 		// }
 	}
-
 	@Override
 	public void dispose() {
 	}
-
-	@Override
-	public void pause() {
-	}
-
-	private int total = 0;
-	private float movementIncrement = 0.0006f;
 
 	// @Override
 	// public void render() {
@@ -72,6 +70,10 @@ public class Copy_2_of_MyContoLibGdx implements ApplicationListener {
 	// // nearSquare.render(GL10.GL_TRIANGLE_STRIP, 0, 4);
 	// renderBook(gl);
 	// }
+
+	@Override
+	public void pause() {
+	}
 
 	@Override
 	public void render() {
@@ -109,16 +111,6 @@ public class Copy_2_of_MyContoLibGdx implements ApplicationListener {
 
 	}
 
-	float[] direction = { 1, 0.5f, 0, 0 };
-
-	private void setLighting(GL10 gl) {
-		gl.glEnable(GL10.GL_LIGHTING);
-		gl.glEnable(GL10.GL_LIGHT0);
-		gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, direction, 0);
-		gl.glEnable(GL10.GL_COLOR_MATERIAL);
-
-	}
-
 	private void renderBook(GL10 gl) {
 
 		// shipTexture.bind();
@@ -141,5 +133,13 @@ public class Copy_2_of_MyContoLibGdx implements ApplicationListener {
 
 	@Override
 	public void resume() {
+	}
+
+	private void setLighting(GL10 gl) {
+		gl.glEnable(GL10.GL_LIGHTING);
+		gl.glEnable(GL10.GL_LIGHT0);
+		gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, direction, 0);
+		gl.glEnable(GL10.GL_COLOR_MATERIAL);
+
 	}
 }

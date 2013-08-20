@@ -38,7 +38,13 @@ public class MyContoLibGdx implements ApplicationListener {
 	}
 
 	@Override
-	public void resize(int width, int height) {
+	public void dispose() {
+		model.dispose();
+
+	}
+
+	@Override
+	public void pause() {
 
 	}
 
@@ -55,18 +61,12 @@ public class MyContoLibGdx implements ApplicationListener {
 	}
 
 	@Override
-	public void pause() {
+	public void resize(int width, int height) {
 
 	}
 
 	@Override
 	public void resume() {
-
-	}
-
-	@Override
-	public void dispose() {
-		model.dispose();
 
 	}
 

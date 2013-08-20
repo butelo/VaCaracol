@@ -105,6 +105,19 @@ public class SceneTest implements ApplicationListener {
 
 	}
 
+	@Override
+	public void dispose() {
+		modelBatch.dispose();
+		instances.clear();
+		try {
+			assets.dispose();
+		} catch (Exception e) {
+			//
+		}
+		model.dispose();
+
+	}
+
 	private void doneLoading() {
 
 		/*
@@ -191,6 +204,10 @@ public class SceneTest implements ApplicationListener {
 	}
 
 	@Override
+	public void pause() {
+	}
+
+	@Override
 	public void render() {
 		/*
 		 * if (loading && assets.update()) doneLoading();
@@ -231,27 +248,10 @@ public class SceneTest implements ApplicationListener {
 	}
 
 	@Override
-	public void dispose() {
-		modelBatch.dispose();
-		instances.clear();
-		try {
-			assets.dispose();
-		} catch (Exception e) {
-			//
-		}
-		model.dispose();
-
-	}
-
-	@Override
-	public void resume() {
-	}
-
-	@Override
 	public void resize(int width, int height) {
 	}
 
 	@Override
-	public void pause() {
+	public void resume() {
 	}
 }

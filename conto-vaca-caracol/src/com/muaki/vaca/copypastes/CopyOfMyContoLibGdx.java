@@ -42,6 +42,10 @@ public class CopyOfMyContoLibGdx implements ApplicationListener {
 	}
 
 	@Override
+	public void pause() {
+	}
+
+	@Override
 	public void render() {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
@@ -54,10 +58,6 @@ public class CopyOfMyContoLibGdx implements ApplicationListener {
 
 	@Override
 	public void resize(int width, int height) {
-	}
-
-	@Override
-	public void pause() {
 	}
 
 	@Override

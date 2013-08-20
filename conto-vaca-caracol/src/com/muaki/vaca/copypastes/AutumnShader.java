@@ -16,7 +16,27 @@ public class AutumnShader implements Shader {
 	}
 
 	@Override
+	public void begin(Camera camera, RenderContext context) {
+
+	}
+
+	@Override
+	public boolean canRender(Renderable instance) {
+		return false;
+	}
+
+	@Override
+	public int compareTo(Shader other) {
+		return 0;
+	}
+
+	@Override
 	public void dispose() {
+
+	}
+
+	@Override
+	public void end() {
 
 	}
 
@@ -26,27 +46,7 @@ public class AutumnShader implements Shader {
 	}
 
 	@Override
-	public int compareTo(Shader other) {
-		return 0;
-	}
-
-	@Override
-	public boolean canRender(Renderable instance) {
-		return false;
-	}
-
-	@Override
-	public void begin(Camera camera, RenderContext context) {
-
-	}
-
-	@Override
 	public void render(Renderable renderable) {
-
-	}
-
-	@Override
-	public void end() {
 
 	}
 

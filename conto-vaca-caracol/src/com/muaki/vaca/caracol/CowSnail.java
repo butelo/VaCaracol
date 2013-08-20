@@ -21,14 +21,10 @@ public class CowSnail extends Game {
 	}
 
 	@Override
-	public void resize(int width, int height) {
-		super.resize(width, height);
+	public void dispose() {
+		super.dispose();
 
-	}
-
-	@Override
-	public void render() {
-		super.render();
+		screen.dispose();
 
 	}
 
@@ -39,16 +35,20 @@ public class CowSnail extends Game {
 	}
 
 	@Override
-	public void resume() {
+	public void render() {
 		super.render();
 
 	}
 
 	@Override
-	public void dispose() {
-		super.dispose();
+	public void resize(int width, int height) {
+		super.resize(width, height);
 
-		screen.dispose();
+	}
+
+	@Override
+	public void resume() {
+		super.render();
 
 	}
 

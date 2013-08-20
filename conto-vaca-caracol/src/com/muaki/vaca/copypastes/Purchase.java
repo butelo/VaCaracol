@@ -3,7 +3,7 @@ package com.muaki.vaca.copypastes;
 public interface Purchase {
 	// public void play();
 
-	public void purchase();
+	public boolean isPurchased();
 
 	// public void stop();
 	//
@@ -15,7 +15,7 @@ public interface Purchase {
 	//
 	// public boolean isPlaying();
 
-	public boolean isPurchased();
+	public void purchase();
 
 	// public boolean isStopped();
 	//

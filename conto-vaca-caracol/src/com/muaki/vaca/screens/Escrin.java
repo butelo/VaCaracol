@@ -5,17 +5,7 @@ import com.badlogic.gdx.Screen;
 public class Escrin implements Screen {
 
 	@Override
-	public void render(float delta) {
-
-	}
-
-	@Override
-	public void resize(int width, int height) {
-		System.out.println("resize");
-	}
-
-	@Override
-	public void show() {
+	public void dispose() {
 
 	}
 
@@ -30,12 +20,22 @@ public class Escrin implements Screen {
 	}
 
 	@Override
+	public void render(float delta) {
+
+	}
+
+	@Override
+	public void resize(int width, int height) {
+		System.out.println("resize");
+	}
+
+	@Override
 	public void resume() {
 
 	}
 
 	@Override
-	public void dispose() {
+	public void show() {
 
 	}
 

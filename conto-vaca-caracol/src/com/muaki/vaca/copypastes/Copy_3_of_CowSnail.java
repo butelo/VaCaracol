@@ -59,6 +59,13 @@ public class Copy_3_of_CowSnail implements ApplicationListener {
 		loading = true;
 	}
 
+	@Override
+	public void dispose() {
+		modelBatch.dispose();
+		instances.clear();
+		assets.dispose();
+	}
+
 	private void doneLoading() {
 		Model model = assets.get("data/scene.g3db", Model.class);
 		for (int i = 0; i < model.nodes.size; i++) {
@@ -91,6 +98,10 @@ public class Copy_3_of_CowSnail implements ApplicationListener {
 	}
 
 	@Override
+	public void pause() {
+	}
+
+	@Override
 	public void render() {
 		if (loading && assets.update())
 			doneLoading();
@@ -109,21 +120,10 @@ public class Copy_3_of_CowSnail implements ApplicationListener {
 	}
 
 	@Override
-	public void dispose() {
-		modelBatch.dispose();
-		instances.clear();
-		assets.dispose();
-	}
-
-	@Override
-	public void resume() {
-	}
-
-	@Override
 	public void resize(int width, int height) {
 	}
 
 	@Override
-	public void pause() {
+	public void resume() {
 	}
 }

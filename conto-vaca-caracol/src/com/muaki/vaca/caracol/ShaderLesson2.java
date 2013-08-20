@@ -84,9 +84,14 @@ public class ShaderLesson2 implements ApplicationListener {
 	}
 
 	@Override
-	public void resize(int width, int height) {
-		cam.setToOrtho(false, width, height);
-		batch.setProjectionMatrix(cam.combined);
+	public void dispose() {
+		batch.dispose();
+		shader.dispose();
+		tex.dispose();
+	}
+
+	@Override
+	public void pause() {
 	}
 
 	@Override
@@ -101,17 +106,12 @@ public class ShaderLesson2 implements ApplicationListener {
 	}
 
 	@Override
-	public void pause() {
+	public void resize(int width, int height) {
+		cam.setToOrtho(false, width, height);
+		batch.setProjectionMatrix(cam.combined);
 	}
 
 	@Override
 	public void resume() {
-	}
-
-	@Override
-	public void dispose() {
-		batch.dispose();
-		shader.dispose();
-		tex.dispose();
 	}
 }

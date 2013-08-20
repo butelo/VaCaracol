@@ -31,6 +31,31 @@ public class ScreenMenuLayer extends _DbgOfMainScreen {
 	// private FPSLogger fps;
 
 	@Override
+	public void dispose() {
+		super.dispose();
+
+		// batch.dispose();
+		// rgba8888.dispose();
+		stage.dispose();
+		skin.dispose();
+		font.dispose();
+		atlas.dispose();
+
+	}
+
+	@Override
+	public void hide() {
+		super.hide();
+
+	}
+
+	@Override
+	public void pause() {
+		super.pause();
+
+	}
+
+	@Override
 	public void render(float delta) {
 		super.render(delta);
 		if (!loading) {
@@ -60,6 +85,12 @@ public class ScreenMenuLayer extends _DbgOfMainScreen {
 		super.resize(width, height);
 
 		System.out.println("resize");
+
+	}
+
+	@Override
+	public void resume() {
+		super.resume();
 
 	}
 
@@ -153,37 +184,6 @@ public class ScreenMenuLayer extends _DbgOfMainScreen {
 
 		// batch = new SpriteBatch();
 		// rgba8888 = new Texture("data/arrow.png");
-	}
-
-	@Override
-	public void hide() {
-		super.hide();
-
-	}
-
-	@Override
-	public void pause() {
-		super.pause();
-
-	}
-
-	@Override
-	public void resume() {
-		super.resume();
-
-	}
-
-	@Override
-	public void dispose() {
-		super.dispose();
-
-		// batch.dispose();
-		// rgba8888.dispose();
-		stage.dispose();
-		skin.dispose();
-		font.dispose();
-		atlas.dispose();
-
 	}
 
 }

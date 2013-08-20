@@ -56,6 +56,13 @@ public class Copy_2_of_CowSnail implements ApplicationListener {
 		loading = true;
 	}
 
+	@Override
+	public void dispose() {
+		modelBatch.dispose();
+		instances.clear();
+		assets.dispose();
+	}
+
 	private void doneLoading() {
 		ship = new ModelInstance(assets.get("data/ship.obj", Model.class));
 		ship.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
@@ -86,6 +93,10 @@ public class Copy_2_of_CowSnail implements ApplicationListener {
 	}
 
 	@Override
+	public void pause() {
+	}
+
+	@Override
 	public void render() {
 		if (loading && assets.update())
 			doneLoading();
@@ -104,21 +115,10 @@ public class Copy_2_of_CowSnail implements ApplicationListener {
 	}
 
 	@Override
-	public void dispose() {
-		modelBatch.dispose();
-		instances.clear();
-		assets.dispose();
-	}
-
-	@Override
-	public void resume() {
-	}
-
-	@Override
 	public void resize(int width, int height) {
 	}
 
 	@Override
-	public void pause() {
+	public void resume() {
 	}
 }

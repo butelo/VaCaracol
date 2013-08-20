@@ -38,6 +38,10 @@ public class SimpleDecalTest extends Game {
 	CameraInputController controller;
 	FPSLogger logger = new FPSLogger();
 
+	Vector3 dir = new Vector3();
+
+	private boolean billboard = true;
+	@Override
 	public void create() {
 		float width = Gdx.graphics.getWidth();
 		float height = Gdx.graphics.getHeight();
@@ -81,9 +85,12 @@ public class SimpleDecalTest extends Game {
 		decals.add(decal);
 	}
 
-	Vector3 dir = new Vector3();
-	private boolean billboard = true;
+	@Override
+	public void dispose() {
+		batch.dispose();
+	}
 
+	@Override
 	public void render() {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 		Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
@@ -104,11 +111,6 @@ public class SimpleDecalTest extends Game {
 		}
 		batch.flush();
 		logger.log();
-	}
-
-	@Override
-	public void dispose() {
-		batch.dispose();
 	}
 
 }

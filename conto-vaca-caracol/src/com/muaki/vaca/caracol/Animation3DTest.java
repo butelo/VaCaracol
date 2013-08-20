@@ -43,12 +43,7 @@ public class Animation3DTest implements ApplicationListener {
 	}
 
 	@Override
-	public void resize(int width, int height) {
-
-	}
-
-	@Override
-	public void render() {
+	public void dispose() {
 
 	}
 
@@ -58,12 +53,17 @@ public class Animation3DTest implements ApplicationListener {
 	}
 
 	@Override
-	public void resume() {
+	public void render() {
 
 	}
 
 	@Override
-	public void dispose() {
+	public void resize(int width, int height) {
+
+	}
+
+	@Override
+	public void resume() {
 
 	}
 

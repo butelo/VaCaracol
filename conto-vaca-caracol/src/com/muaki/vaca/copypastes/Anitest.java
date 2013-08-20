@@ -67,6 +67,13 @@ public class Anitest implements ApplicationListener {
 		loading = true;
 	}
 
+	@Override
+	public void dispose() {
+		modelBatch.dispose();
+		instances.clear();
+		assets.dispose();
+	}
+
 	private void doneLoading() {
 		Model model = assets.get("data/anitest.g3db", Model.class);
 
@@ -111,6 +118,11 @@ public class Anitest implements ApplicationListener {
 	}
 
 	@Override
+	public void pause() {
+
+	}
+
+	@Override
 	public void render() {
 		total += 1;
 		if (total > 500) {
@@ -140,23 +152,11 @@ public class Anitest implements ApplicationListener {
 	}
 
 	@Override
-	public void dispose() {
-		modelBatch.dispose();
-		instances.clear();
-		assets.dispose();
-	}
-
-	@Override
-	public void resume() {
-	}
-
-	@Override
 	public void resize(int width, int height) {
 	}
 
 	@Override
-	public void pause() {
-
+	public void resume() {
 	}
 
 }

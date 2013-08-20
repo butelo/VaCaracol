@@ -121,6 +121,17 @@ public class CowSnail2 extends Game {
 		loading = true;
 	}
 
+	@Override
+	public void dispose() {
+		modelBatch.dispose();
+		instances.clear();
+		assets.dispose();
+		batch.dispose();
+
+		rgba8888.dispose();
+
+	}
+
 	private void doneLoading() {
 		model = assets.get("data/roomBI.g3db", Model.class);
 
@@ -213,6 +224,11 @@ public class CowSnail2 extends Game {
 	}
 
 	@Override
+	public void pause() {
+
+	}
+
+	@Override
 	public void render() {
 
 		texture.bind();
@@ -272,27 +288,11 @@ public class CowSnail2 extends Game {
 	}
 
 	@Override
-	public void dispose() {
-		modelBatch.dispose();
-		instances.clear();
-		assets.dispose();
-		batch.dispose();
-
-		rgba8888.dispose();
-
-	}
-
-	@Override
-	public void resume() {
-	}
-
-	@Override
 	public void resize(int width, int height) {
 	}
 
 	@Override
-	public void pause() {
-
+	public void resume() {
 	}
 
 }

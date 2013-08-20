@@ -67,95 +67,11 @@ public class MainScreen implements Screen {
 	Model model;
 
 	@Override
-	public void render(float delta) {
+	public void dispose() {
 
-		total += 1;
-		if (total > 500) {
-			movementIncrement = -movementIncrement;
-			total = -200;
-
-		}
-
-		if (loading && assets.update()) {
-
-			doneLoading();
-		}
-
-		// camController.update();
-		cam.rotate(movementIncrement * 20, 0, 1, 0);
-		cam.translate(movementIncrement, 0, movementIncrement);
-		cam.update();
-
-		Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(),
-				Gdx.graphics.getHeight());
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
-
-		modelBatch.begin(cam);
-
-		for (ModelInstance instance : instances) {
-			modelBatch.render(instance, lights);
-
-			rotation = 10 * Gdx.graphics.getDeltaTime();
-
-			if (rotationtotal < 90) {
-				vaquita.transform.rotate(Vector3.X, rotation);
-				rotationtotal += rotation;
-			}
-
-		}
-
-		if (space != null) {
-			modelBatch.render(space);
-
-		}
-
-		// System.out.println("x: " +cam.position.x +" y: "
-		// +cam.position.y+" z: " +cam.position.z );
-
-		modelBatch.end();
-
-	}
-
-	@Override
-	public void resize(int width, int height) {
-
-	}
-
-	@Override
-	public void show() {
-		mpex = new InputMultiplexer();
-		texture = new Texture(Gdx.files.internal("data/vaquita.png"));
-
-		modelBatch = new ModelBatch();
-		lights = new Lights();
-		lights.ambientLight.set(0.4f, 0.4f, 0.4f, 1f);
-
-		lights.add(new DirectionalLight().set(0.8f, 0.8f, 0.8f, -1f, -0.8f,
-				-0.2f));
-
-		lights.add(new PointLight().set(0.8f, 0.8f, 0.8f, -0.15267295f,
-				8.6140175f, 9.30487f, 40));
-
-		cam = new PerspectiveCamera(35, Gdx.graphics.getWidth(),
-				Gdx.graphics.getHeight());
-		cam.position.set(-0.15267295f, 8.6140175f, 9.30487f);
-
-		cam.lookAt(-0f, -0f, -50.6217f);
-		cam.near = 0.1f;
-		cam.far = 300f;
-		cam.update();
-
-		camController = new CameraInputController(cam);
-
-		// Gdx.input.setInputProcessor(camController);
-
-		mpex.addProcessor(camController);
-
-		assets = new AssetManager();
-
-		assets.load("data/roomBI.g3db", Model.class);
-
-		loading = true;
+		modelBatch.dispose();
+		instances.clear();
+		assets.dispose();
 
 	}
 
@@ -248,15 +164,99 @@ public class MainScreen implements Screen {
 	}
 
 	@Override
+	public void render(float delta) {
+
+		total += 1;
+		if (total > 500) {
+			movementIncrement = -movementIncrement;
+			total = -200;
+
+		}
+
+		if (loading && assets.update()) {
+
+			doneLoading();
+		}
+
+		// camController.update();
+		cam.rotate(movementIncrement * 20, 0, 1, 0);
+		cam.translate(movementIncrement, 0, movementIncrement);
+		cam.update();
+
+		Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(),
+				Gdx.graphics.getHeight());
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+
+		modelBatch.begin(cam);
+
+		for (ModelInstance instance : instances) {
+			modelBatch.render(instance, lights);
+
+			rotation = 10 * Gdx.graphics.getDeltaTime();
+
+			if (rotationtotal < 90) {
+				vaquita.transform.rotate(Vector3.X, rotation);
+				rotationtotal += rotation;
+			}
+
+		}
+
+		if (space != null) {
+			modelBatch.render(space);
+
+		}
+
+		// System.out.println("x: " +cam.position.x +" y: "
+		// +cam.position.y+" z: " +cam.position.z );
+
+		modelBatch.end();
+
+	}
+
+	@Override
+	public void resize(int width, int height) {
+
+	}
+
+	@Override
 	public void resume() {
 	}
 
 	@Override
-	public void dispose() {
+	public void show() {
+		mpex = new InputMultiplexer();
+		texture = new Texture(Gdx.files.internal("data/vaquita.png"));
 
-		modelBatch.dispose();
-		instances.clear();
-		assets.dispose();
+		modelBatch = new ModelBatch();
+		lights = new Lights();
+		lights.ambientLight.set(0.4f, 0.4f, 0.4f, 1f);
+
+		lights.add(new DirectionalLight().set(0.8f, 0.8f, 0.8f, -1f, -0.8f,
+				-0.2f));
+
+		lights.add(new PointLight().set(0.8f, 0.8f, 0.8f, -0.15267295f,
+				8.6140175f, 9.30487f, 40));
+
+		cam = new PerspectiveCamera(35, Gdx.graphics.getWidth(),
+				Gdx.graphics.getHeight());
+		cam.position.set(-0.15267295f, 8.6140175f, 9.30487f);
+
+		cam.lookAt(-0f, -0f, -50.6217f);
+		cam.near = 0.1f;
+		cam.far = 300f;
+		cam.update();
+
+		camController = new CameraInputController(cam);
+
+		// Gdx.input.setInputProcessor(camController);
+
+		mpex.addProcessor(camController);
+
+		assets = new AssetManager();
+
+		assets.load("data/roomBI.g3db", Model.class);
+
+		loading = true;
 
 	}
 

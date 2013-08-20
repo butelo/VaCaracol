@@ -60,6 +60,12 @@ public class RotationTest extends Game {
 	}
 
 	@Override
+	public void dispose() {
+		model.dispose();
+		modelBatch.dispose();
+	}
+
+	@Override
 	public void render() {
 
 		Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(),
@@ -74,12 +80,6 @@ public class RotationTest extends Game {
 		modelBatch.begin(camera);
 		modelBatch.render(modelInstance);
 		modelBatch.end();
-	}
-
-	@Override
-	public void dispose() {
-		model.dispose();
-		modelBatch.dispose();
 	}
 
 }

@@ -83,6 +83,13 @@ public class Anitest extends InputAdapter implements ApplicationListener {
 		loading = true;
 	}
 
+	@Override
+	public void dispose() {
+		modelBatch.dispose();
+		instances.clear();
+		assets.dispose();
+	}
+
 	private void doneLoading() {
 		Model model = assets.get("data/anitest.g3db", Model.class);
 
@@ -146,6 +153,41 @@ public class Anitest extends InputAdapter implements ApplicationListener {
 	}
 
 	@Override
+	public boolean keyDown(int keycode) {
+		if (keycode == Keys.LEFT)
+			leftKey = true;
+		if (keycode == Keys.RIGHT)
+			rightKey = true;
+		if (keycode == Keys.UP)
+			upKey = true;
+		if (keycode == Keys.DOWN)
+			downKey = true;
+		if (keycode == Keys.SPACE)
+			spaceKey = true;
+		return super.keyDown(keycode);
+	}
+
+	@Override
+	public boolean keyUp(int keycode) {
+		if (keycode == Keys.LEFT)
+			leftKey = false;
+		if (keycode == Keys.RIGHT)
+			rightKey = false;
+		if (keycode == Keys.UP)
+			upKey = false;
+		if (keycode == Keys.DOWN)
+			downKey = false;
+		if (keycode == Keys.SPACE)
+			spaceKey = false;
+		return super.keyUp(keycode);
+	}
+
+	@Override
+	public void pause() {
+
+	}
+
+	@Override
 	public void render() {
 		total += 1;
 		if (total > 500) {
@@ -190,53 +232,11 @@ public class Anitest extends InputAdapter implements ApplicationListener {
 	}
 
 	@Override
-	public void dispose() {
-		modelBatch.dispose();
-		instances.clear();
-		assets.dispose();
-	}
-
-	@Override
-	public void resume() {
-	}
-
-	@Override
 	public void resize(int width, int height) {
 	}
 
 	@Override
-	public void pause() {
-
-	}
-
-	@Override
-	public boolean keyUp(int keycode) {
-		if (keycode == Keys.LEFT)
-			leftKey = false;
-		if (keycode == Keys.RIGHT)
-			rightKey = false;
-		if (keycode == Keys.UP)
-			upKey = false;
-		if (keycode == Keys.DOWN)
-			downKey = false;
-		if (keycode == Keys.SPACE)
-			spaceKey = false;
-		return super.keyUp(keycode);
-	}
-
-	@Override
-	public boolean keyDown(int keycode) {
-		if (keycode == Keys.LEFT)
-			leftKey = true;
-		if (keycode == Keys.RIGHT)
-			rightKey = true;
-		if (keycode == Keys.UP)
-			upKey = true;
-		if (keycode == Keys.DOWN)
-			downKey = true;
-		if (keycode == Keys.SPACE)
-			spaceKey = true;
-		return super.keyDown(keycode);
+	public void resume() {
 	}
 
 }

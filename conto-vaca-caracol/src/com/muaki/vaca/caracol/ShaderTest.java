@@ -65,6 +65,17 @@ public class ShaderTest implements ApplicationListener {
 	}
 
 	@Override
+	public void dispose() {
+		shader.dispose();
+		model.dispose();
+		modelBatch.dispose();
+	}
+
+	@Override
+	public void pause() {
+	}
+
+	@Override
 	public void render() {
 		camController.update();
 
@@ -79,21 +90,10 @@ public class ShaderTest implements ApplicationListener {
 	}
 
 	@Override
-	public void dispose() {
-		shader.dispose();
-		model.dispose();
-		modelBatch.dispose();
-	}
-
-	@Override
-	public void resume() {
-	}
-
-	@Override
 	public void resize(int width, int height) {
 	}
 
 	@Override
-	public void pause() {
+	public void resume() {
 	}
 }
