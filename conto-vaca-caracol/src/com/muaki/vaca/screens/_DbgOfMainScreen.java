@@ -5,6 +5,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -24,8 +25,7 @@ import com.badlogic.gdx.graphics.g3d.utils.CameraInputController;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 
-public class MainScreen implements Screen {
-
+public class _DbgOfMainScreen implements Screen {
 	public PerspectiveCamera cam;
 	public CameraInputController camController;
 	public ModelBatch modelBatch;
@@ -33,22 +33,22 @@ public class MainScreen implements Screen {
 	public Array<ModelInstance> instances = new Array<ModelInstance>();
 	public Lights lights;
 	public boolean loading;
-
-	public ModelInstance book;
-	public ModelInstance cubierta;
-	public ModelInstance pagina34;
-	public ModelInstance pagina56;
-
-	public ModelInstance space;
-	public ModelInstance table;
-	public ModelInstance floor;
-	public ModelInstance vaquita;
-	public ModelInstance bed;
-	public ModelInstance caracol;
 	public InputMultiplexer mpex;
-	public boolean clicadopadiante;
+	public boolean clicadopadiante = false;
+	public FPSLogger fps;
 
-	float angleX = -90;
+	
+
+	public ModelInstance uno;
+	public ModelInstance dos;
+	public ModelInstance tres;
+	public ModelInstance cuatro;
+	public ModelInstance cinco;
+	public ModelInstance seis;
+
+	Node node;
+
+	float angleX = 0;
 
 	float rotation;
 
@@ -58,13 +58,14 @@ public class MainScreen implements Screen {
 	IntAttribute backfaceculling;
 
 	Material material;
-
+	
 
 	private int total = 0;
 	private float movementIncrement = 0.0006f;
 	float rotationtotal;
 
 	public Texture texture;
+	
 	Model model;
 
 	@Override
@@ -82,7 +83,7 @@ public class MainScreen implements Screen {
 			doneLoading();
 		}
 
-//		camController.update();
+		camController.update();
 		cam.rotate(movementIncrement * 20, 0, 1, 0);
 		cam.translate(movementIncrement, 0, movementIncrement);
 		cam.update();
@@ -98,171 +99,169 @@ public class MainScreen implements Screen {
 
 			rotation = 10 * Gdx.graphics.getDeltaTime();
 
-			if (rotationtotal < 90) {
-				vaquita.transform.rotate(Vector3.X, rotation);
+			if (rotationtotal < 90 & clicadopadiante) {
+				uno.transform.rotate(Vector3.X, rotation);
 				rotationtotal += rotation;
+				
 			}
+			
 
 		}
 
-		if (space != null) {
-			modelBatch.render(space);
 
-		}
-
-		// System.out.println("x: " +cam.position.x +" y: "
-		// +cam.position.y+" z: " +cam.position.z );
 
 		modelBatch.end();
 
+	
+fps.log();
+
+		
 	}
 
 	@Override
 	public void resize(int width, int height) {
-
+		
 	}
 
 	@Override
 	public void show() {
 		mpex = new InputMultiplexer();
-		texture = new Texture(Gdx.files.internal("data/vaquita.png"));
-
+		fps = new FPSLogger();
 		modelBatch = new ModelBatch();
+		
 		lights = new Lights();
 		lights.ambientLight.set(0.4f, 0.4f, 0.4f, 1f);
-
-
 		lights.add(new DirectionalLight().set(0.8f, 0.8f, 0.8f, -1f, -0.8f,
 				-0.2f));
-
 		lights.add(new PointLight().set(0.8f, 0.8f, 0.8f, -0.15267295f,
 				8.6140175f, 9.30487f, 40));
+		
 
 		cam = new PerspectiveCamera(35, Gdx.graphics.getWidth(),
 				Gdx.graphics.getHeight());
-		cam.position.set(-0.15267295f, 8.6140175f, 9.30487f);
-
-		cam.lookAt(-0f, -0f, -50.6217f);
+		cam.position.set(3.5107954f, 2.319038f, 5.35728f);
+		cam.lookAt(-0f, -0f, 0f);
 		cam.near = 0.1f;
 		cam.far = 300f;
 		cam.update();
-
 		camController = new CameraInputController(cam);
-		
-		
-//		Gdx.input.setInputProcessor(camController);
-		
+		Gdx.input.setInputProcessor(camController);
 		mpex.addProcessor(camController);
-		
-		
-		assets = new AssetManager();
 
-		assets.load("data/roomBI.g3db", Model.class);
+		assets = new AssetManager();	
+		assets.load("data/follasdolibrotest.g3db", Model.class);
+
 
 		loading = true;
-
+		
 	}
-
+	
+	
 	private void doneLoading() {
-		model = assets.get("data/roomBI.g3db", Model.class);
+		model = assets.get("data/follasdolibrotest.g3db", Model.class);
 
-		book = new ModelInstance(model, "book");
+		uno = new ModelInstance(model, "uno");
 		// book.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
-		instances.add(book);
-
-		cubierta = new ModelInstance(model, "cubiertas");
-		// book.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
-		instances.add(cubierta);
-
-		pagina34 = new ModelInstance(model, "book34");
-		// book.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
-		instances.add(pagina34);
-
-		pagina56 = new ModelInstance(model, "book56");
-		// book.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
-		instances.add(pagina56);
-
-		bed = new ModelInstance(model, "bed");
-		// book.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
-		instances.add(bed);
-
-		table = new ModelInstance(model, "table");
-		// table.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
-		instances.add(table);
-
-		floor = new ModelInstance(model, "floor");
-		// floor.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
-
-		instances.add(floor);
-
-		vaquita = new ModelInstance(model, "vaca");
-		Node node = vaquita.getNode("vaca");
-
-		vaquita.transform.set(node.globalTransform);
+		material = uno.materials.get(0);
+		material.set(new IntAttribute(IntAttribute.CullFace, 0));
+		node = uno.getNode("uno");
+		uno.transform.set(node.globalTransform);
 		node.translation.set(0, 0, 0);
 		node.scale.set(1, 1, 1);
-
 		node.rotation.idt();
-		vaquita.calculateTransforms();
+		uno.calculateTransforms();
+		uno.transform.rotate(Vector3.X, angleX);
+		instances.add(uno);
 
-		textureAttribute = new TextureAttribute(TextureAttribute.Diffuse,
-				texture);
-		colorAttribute = new ColorAttribute(ColorAttribute.Diffuse,
-				Color.ORANGE);
-		blendingAttribute = new BlendingAttribute(GL20.GL_SRC_ALPHA,
-				GL20.GL_ONE_MINUS_SRC_ALPHA);
-		backfaceculling = new IntAttribute(IntAttribute.CullFace, GL20.GL_BACK);
-
-		material = vaquita.materials.get(0);
+		dos = new ModelInstance(model, "dos");
+		// book.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
+		material = dos.materials.get(0);
 		material.set(new IntAttribute(IntAttribute.CullFace, 0));
+		node = dos.getNode("dos");
+		dos.transform.set(node.globalTransform);
+		node.translation.set(0, 0, 0);
+		node.scale.set(1, 1, 1);
+		node.rotation.idt();
+		dos.calculateTransforms();
+		dos.transform.rotate(Vector3.X, angleX);
+		instances.add(dos);
 
-		material.set(blendingAttribute);
-
-		vaquita.transform.rotate(Vector3.X, angleX);
-
-		instances.add(vaquita);
-
-		caracol = new ModelInstance(model, "caracol");
-		// floor.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
-
-		// textureAttribute = new TextureAttribute(TextureAttribute.Diffuse,
-		// texture);
-		// colorAttribute = new ColorAttribute(ColorAttribute.Diffuse,
-		// Color.ORANGE);
-		// blendingAttribute = new BlendingAttribute(GL20.GL_SRC_ALPHA,
-		// GL20.GL_ONE_MINUS_SRC_ALPHA);
-		//
-		material = caracol.materials.get(0);
-		material.set(blendingAttribute);
+		tres = new ModelInstance(model, "tres");
+		// book.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
+		material = tres.materials.get(0);
 		material.set(new IntAttribute(IntAttribute.CullFace, 0));
+		node = tres.getNode("tres");
+		tres.transform.set(node.globalTransform);
+		node.translation.set(0, 0, 0);
+		node.scale.set(1, 1, 1);
+		node.rotation.idt();
+		tres.calculateTransforms();
+		tres.transform.rotate(Vector3.X, angleX);
+		instances.add(tres);
 
-		instances.add(caracol);
+		cuatro = new ModelInstance(model, "cuatro");
+		// book.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
+		material = cuatro.materials.get(0);
+		material.set(new IntAttribute(IntAttribute.CullFace, 0));
+		node = cuatro.getNode("cuatro");
+		cuatro.transform.set(node.globalTransform);
+		node.translation.set(0, 0, 0);
+		node.scale.set(1, 1, 1);
+		node.rotation.idt();
+		cuatro.calculateTransforms();
+		cuatro.transform.rotate(Vector3.X, angleX);
+		instances.add(cuatro);
+
+		cinco = new ModelInstance(model, "cinco");
+		material = cinco.materials.get(0);
+		material.set(new IntAttribute(IntAttribute.CullFace, 0));
+		node = cinco.getNode("cinco");
+		cinco.transform.set(node.globalTransform);
+		node.translation.set(0, 0, 0);
+		node.scale.set(1, 1, 1);
+		node.rotation.idt();
+		cinco.calculateTransforms();
+		cinco.transform.rotate(Vector3.X, angleX);
+		instances.add(cinco);
+
+		seis = new ModelInstance(model, "seis");
+		material = seis.materials.get(0);
+		material.set(new IntAttribute(IntAttribute.CullFace, 0));
+		node = seis.getNode("seis");
+		seis.transform.set(node.globalTransform);
+		node.translation.set(0, 0, 0);
+		node.scale.set(1, 1, 1);
+		node.rotation.idt();
+		seis.calculateTransforms();
+		seis.transform.rotate(Vector3.X, angleX);
+		instances.add(seis);
+
+
 
 		loading = false;
 	}
 
+
 	@Override
 	public void hide() {
-
+		
 	}
 
 	@Override
 	public void pause() {
-
+		
 	}
 
 	@Override
 	public void resume() {
+		
 	}
 
 	@Override
 	public void dispose() {
-
-		modelBatch.dispose();
-		instances.clear();
-		assets.dispose();
-
-
+		
 	}
-
+	
+	
+	
 }
