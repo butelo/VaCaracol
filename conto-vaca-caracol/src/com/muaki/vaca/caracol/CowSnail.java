@@ -2,6 +2,7 @@ package com.muaki.vaca.caracol;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
+import com.muaki.vaca.screens.Escrin;
 import com.muaki.vaca.ui.ScreenMenuLayer;
 
 //import com.badlogic.gdx.scenes.scene2d.ui.Tree.Node;
@@ -12,9 +13,9 @@ public class CowSnail extends Game {
 
 	@Override
 	public void create() {
-		screen = new ScreenMenuLayer();
+//		screen = new ScreenMenuLayer();
 		// pantalla para probas
-		// screen = new Escrin();
+		 screen = new Escrin();
 
 		setScreen(screen);
 

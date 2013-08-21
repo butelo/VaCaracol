@@ -36,7 +36,7 @@ public class _DbgOfMainScreen implements Screen {
 	public boolean clicadopadiante = false;
 
 	// XXX quitar o log dos frames
-	public FPSLogger fps;
+//	public FPSLogger fps;
 
 	public ModelInstance uno;
 	public ModelInstance dos;
@@ -192,9 +192,9 @@ public class _DbgOfMainScreen implements Screen {
 		for (ModelInstance instance : instances) {
 			modelBatch.render(instance, lights);
 
-			rotation = 10 * Gdx.graphics.getDeltaTime();
+			rotation = -10 * Gdx.graphics.getDeltaTime();
 
-			if (rotationtotal < 90 & clicadopadiante) {
+			if (rotationtotal > -90 && clicadopadiante) {
 				uno.transform.rotate(Vector3.X, rotation);
 				rotationtotal += rotation;
 
@@ -205,7 +205,7 @@ public class _DbgOfMainScreen implements Screen {
 		modelBatch.end();
 
 		// XXX quitar o log dos frames
-		fps.log();
+//		fps.log();
 
 	}
 
@@ -224,7 +224,7 @@ public class _DbgOfMainScreen implements Screen {
 		mpex = new InputMultiplexer();
 
 		// XXX quitar o log dos frames
-		fps = new FPSLogger();
+//		fps = new FPSLogger();
 		modelBatch = new ModelBatch();
 
 		lights = new Lights();

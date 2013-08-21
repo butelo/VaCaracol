@@ -13,11 +13,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.muaki.vaca.screens.MainScreen;
 import com.muaki.vaca.screens._DbgOfMainScreen;
 
 //aqui e onde podemos probar a interfaz e o funcionamiento
 //para o resultado correcto substituir a _DbgOf e quedar con Main
 public class ScreenMenuLayer extends _DbgOfMainScreen {
+//	public class ScreenMenuLayer extends MainScreen {
+
 	private Stage stage;
 	private Table table;
 	private Button boton;
@@ -60,7 +63,7 @@ public class ScreenMenuLayer extends _DbgOfMainScreen {
 		super.render(delta);
 		if (!loading) {
 
-			// para que saia o debug de table
+			//XXX para que saia o debug de table
 			Table.drawDebug(stage);
 
 			stage.act(delta);
@@ -114,6 +117,7 @@ public class ScreenMenuLayer extends _DbgOfMainScreen {
 		table = new Table();
 		table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
+//		XXX debug de table
 		table.debug();
 
 		table.bottom();
