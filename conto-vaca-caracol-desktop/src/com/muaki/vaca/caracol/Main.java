@@ -11,6 +11,7 @@ public class Main {
 		cfg.width = 1025;
 		cfg.height = 769;
 		cfg.vSyncEnabled = true;
+		
 
 		new LwjglApplication(new CowSnail(), cfg);
 

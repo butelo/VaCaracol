@@ -95,8 +95,8 @@ public class SceneTest implements ApplicationListener {
 
 		renderContext = new RenderContext(new DefaultTextureBinder(
 				DefaultTextureBinder.WEIGHTED, 1));
-		shader = new DefaultShader(renderable.material,
-				renderable.mesh.getVertexAttributes(), true, false, 1, 0, 0, 0);
+//		shader = new DefaultShader(renderable.material,
+//				renderable.mesh.getVertexAttributes(), true, false, 1, 0, 0, 0);
 		shader.init();
 
 		doneLoading();

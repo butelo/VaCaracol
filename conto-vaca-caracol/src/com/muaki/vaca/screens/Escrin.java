@@ -15,10 +15,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.muaki.vaca.caracol.Preferencias;
+import com.muaki.vaca.simulations.Control;
 
-public class Escrin implements Screen {
+public class Escrin  extends _DbgOfMainScreen {
 //	public class ScreenMenuLayer extends MainScreen {
-
 	private Stage stage;
 	private Table table;
 	private Button boton;
@@ -27,7 +28,8 @@ public class Escrin implements Screen {
 	private TextureAtlas atlas;
 	private Button botonRwdFwd2, botonRwdFwd;
 	private Label label;
-	boolean primeiravez = true;
+	private Preferencias prefs;
+	private Control crtl;
 
 	// private FPSLogger fps;
 
@@ -93,7 +95,12 @@ public class Escrin implements Screen {
 	public void show() {
 //		super.show();
 		// fps = new FPSLogger();
-
+		
+		prefs = new Preferencias();
+		crtl = new Control();
+		
+		System.out.println(prefs.TITLE);
+		
 		stage = new Stage();
 //		mpex.addProcessor(stage);
 //		Gdx.input.setInputProcessor(mpex);
@@ -133,26 +140,40 @@ public class Escrin implements Screen {
 			public void clicked(InputEvent event, float x, float y) {
 				// Gdx.app.exit();
 				label.setText("padiante");
-				System.out.println("padiante!");
+				
+				if(crtl.CurrPax<crtl.PaxsTot){
+				crtl.CurrPax++;
 
-//				clicadopadiante = true;
+		}
+				
+				
+				System.out.println(crtl.CurrPax + " "+ crtl.CicloCorto());
+
 
 			}
 		});
 
-		LabelStyle lablsty = new LabelStyle(font, Color.WHITE);
+		LabelStyle lablsty = new LabelStyle(font, Color.GREEN);
 
 		
 		label = new Label("text", lablsty);
-		label.setColor(Color.GREEN);
+
 		
 		
 		botonRwdFwd.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
+				
 				// Gdx.app.exit();
-				label.setText("patras: "+x+" "+y);
-				System.out.println("patras!");
+				label.setText("patras");
+				
+				if(crtl.CurrPax>0){
+
+				crtl.CurrPax--;
+				}
+				
+				System.out.println(crtl.CurrPax + " "+ crtl.CicloCorto());
+			
 //				clicadopadiante = false;
 
 			}

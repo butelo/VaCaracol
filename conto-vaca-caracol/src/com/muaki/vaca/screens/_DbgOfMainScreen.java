@@ -23,6 +23,7 @@ import com.badlogic.gdx.graphics.g3d.model.Node;
 import com.badlogic.gdx.graphics.g3d.utils.CameraInputController;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
+import com.muaki.vaca.simulations.Control;
 
 public class _DbgOfMainScreen implements Screen {
 	public PerspectiveCamera cam;
@@ -44,6 +45,9 @@ public class _DbgOfMainScreen implements Screen {
 	public ModelInstance cuatro;
 	public ModelInstance cinco;
 	public ModelInstance seis;
+	public ModelInstance contra;
+	public ModelInstance cuberta;
+	public ModelInstance lombo;
 
 	Node node;
 
@@ -65,6 +69,8 @@ public class _DbgOfMainScreen implements Screen {
 	public Texture texture;
 
 	Model model;
+	
+	public Control crtl;
 
 	@Override
 	public void dispose() {
@@ -74,11 +80,11 @@ public class _DbgOfMainScreen implements Screen {
 	private void doneLoading() {
 		model = assets.get("data/follasdolibrotest.g3db", Model.class);
 
-		uno = new ModelInstance(model, "uno");
+		uno = new ModelInstance(model, "pag1");
 		// book.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
 		material = uno.materials.get(0);
 		material.set(new IntAttribute(IntAttribute.CullFace, 0));
-		node = uno.getNode("uno");
+		node = uno.getNode("pag1");
 		uno.transform.set(node.globalTransform);
 		node.translation.set(0, 0, 0);
 		node.scale.set(1, 1, 1);
@@ -87,11 +93,11 @@ public class _DbgOfMainScreen implements Screen {
 		uno.transform.rotate(Vector3.X, angleX);
 		instances.add(uno);
 
-		dos = new ModelInstance(model, "dos");
+		dos = new ModelInstance(model, "pag2");
 		// book.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
 		material = dos.materials.get(0);
 		material.set(new IntAttribute(IntAttribute.CullFace, 0));
-		node = dos.getNode("dos");
+		node = dos.getNode("pag2");
 		dos.transform.set(node.globalTransform);
 		node.translation.set(0, 0, 0);
 		node.scale.set(1, 1, 1);
@@ -100,11 +106,11 @@ public class _DbgOfMainScreen implements Screen {
 		dos.transform.rotate(Vector3.X, angleX);
 		instances.add(dos);
 
-		tres = new ModelInstance(model, "tres");
+		tres = new ModelInstance(model, "pag3");
 		// book.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
 		material = tres.materials.get(0);
 		material.set(new IntAttribute(IntAttribute.CullFace, 0));
-		node = tres.getNode("tres");
+		node = tres.getNode("pag3");
 		tres.transform.set(node.globalTransform);
 		node.translation.set(0, 0, 0);
 		node.scale.set(1, 1, 1);
@@ -113,11 +119,11 @@ public class _DbgOfMainScreen implements Screen {
 		tres.transform.rotate(Vector3.X, angleX);
 		instances.add(tres);
 
-		cuatro = new ModelInstance(model, "cuatro");
+		cuatro = new ModelInstance(model, "pag4");
 		// book.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
 		material = cuatro.materials.get(0);
 		material.set(new IntAttribute(IntAttribute.CullFace, 0));
-		node = cuatro.getNode("cuatro");
+		node = cuatro.getNode("pag4");
 		cuatro.transform.set(node.globalTransform);
 		node.translation.set(0, 0, 0);
 		node.scale.set(1, 1, 1);
@@ -125,11 +131,12 @@ public class _DbgOfMainScreen implements Screen {
 		cuatro.calculateTransforms();
 		cuatro.transform.rotate(Vector3.X, angleX);
 		instances.add(cuatro);
-
-		cinco = new ModelInstance(model, "cinco");
+		
+		
+		cinco = new ModelInstance(model, "pag5");
 		material = cinco.materials.get(0);
 		material.set(new IntAttribute(IntAttribute.CullFace, 0));
-		node = cinco.getNode("cinco");
+		node = cinco.getNode("pag5");
 		cinco.transform.set(node.globalTransform);
 		node.translation.set(0, 0, 0);
 		node.scale.set(1, 1, 1);
@@ -138,10 +145,10 @@ public class _DbgOfMainScreen implements Screen {
 		cinco.transform.rotate(Vector3.X, angleX);
 		instances.add(cinco);
 
-		seis = new ModelInstance(model, "seis");
+		seis = new ModelInstance(model, "pag6");
 		material = seis.materials.get(0);
 		material.set(new IntAttribute(IntAttribute.CullFace, 0));
-		node = seis.getNode("seis");
+		node = seis.getNode("pag6");
 		seis.transform.set(node.globalTransform);
 		node.translation.set(0, 0, 0);
 		node.scale.set(1, 1, 1);
@@ -149,6 +156,42 @@ public class _DbgOfMainScreen implements Screen {
 		seis.calculateTransforms();
 		seis.transform.rotate(Vector3.X, angleX);
 		instances.add(seis);
+		
+		contra = new ModelInstance(model, "contra");
+		material = contra.materials.get(0);
+		material.set(new IntAttribute(IntAttribute.CullFace, 0));
+		node = contra.getNode("contra");
+		contra.transform.set(node.globalTransform);
+		node.translation.set(0, 0, 0);
+		node.scale.set(1, 1, 1);
+		node.rotation.idt();
+		contra.calculateTransforms();
+		contra.transform.rotate(Vector3.X, angleX);
+		instances.add(contra);
+		
+		cuberta = new ModelInstance(model, "cuberta");
+		material = cuberta.materials.get(0);
+		material.set(new IntAttribute(IntAttribute.CullFace, 0));
+		node = cuberta.getNode("cuberta");
+		cuberta.transform.set(node.globalTransform);
+		node.translation.set(0, 0, 0);
+		node.scale.set(1, 1, 1);
+		node.rotation.idt();
+		cuberta.calculateTransforms();
+		cuberta.transform.rotate(Vector3.X, angleX);
+		instances.add(cuberta);
+		
+		lombo = new ModelInstance(model, "lombo");
+		material = lombo.materials.get(0);
+		material.set(new IntAttribute(IntAttribute.CullFace, 0));
+		node = lombo.getNode("lombo");
+		lombo.transform.set(node.globalTransform);
+		node.translation.set(0, 0, 0);
+		node.scale.set(1, 1, 1);
+		node.rotation.idt();
+		lombo.calculateTransforms();
+		lombo.transform.rotate(Vector3.X, angleX);
+		instances.add(lombo);
 
 		loading = false;
 	}
@@ -194,11 +237,8 @@ public class _DbgOfMainScreen implements Screen {
 
 			rotation = -10 * Gdx.graphics.getDeltaTime();
 
-			if (rotationtotal > -90 && clicadopadiante) {
-				uno.transform.rotate(Vector3.X, rotation);
-				rotationtotal += rotation;
-
-			}
+			rotaciondolibro();
+			
 
 		}
 
@@ -207,6 +247,32 @@ public class _DbgOfMainScreen implements Screen {
 		// XXX quitar o log dos frames
 //		fps.log();
 
+	}
+
+	private void rotaciondolibro() {
+		if (rotationtotal > -100 && clicadopadiante) {
+			
+//			uno.transform.rotate(Vector3.X, rotation);
+//			
+			if (rotationtotal > -15){
+				lombo.transform.rotate(Vector3.X, rotation);
+			}
+			
+			cuberta.transform.rotate(Vector3.X, rotation);
+			seis.transform.rotate(Vector3.X, rotation);
+			
+			
+			if (rotationtotal > -95){
+				cuatro.transform.rotate(Vector3.X, rotation);
+			}
+			if (rotationtotal > -90){
+				dos.transform.rotate(Vector3.X, rotation);
+				dos.transform.translate(0, 0, -0.00006f);
+			}
+			
+			
+			rotationtotal += rotation;
+		}		
 	}
 
 	@Override

@@ -13,9 +13,9 @@ public class CowSnail extends Game {
 
 	@Override
 	public void create() {
-//		screen = new ScreenMenuLayer();
+		screen = new ScreenMenuLayer();
 		// pantalla para probas
-		 screen = new Escrin();
+//		 screen = new Escrin();
 
 		setScreen(screen);
 
