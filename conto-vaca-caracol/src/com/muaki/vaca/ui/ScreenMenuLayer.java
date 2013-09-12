@@ -21,6 +21,7 @@ import com.muaki.vaca.simulations.Control;
 
 //aqui e onde podemos probar a interfaz e o funcionamiento
 //para o resultado correcto substituir a _DbgOf e quedar con Main
+//esta pantalla leva o menu e extende a pantalla que leva o 3d
 public class ScreenMenuLayer extends _DbgOfMainScreen {
 //	 public class ScreenMenuLayer extends MainScreen {
 
