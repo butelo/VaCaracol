@@ -1,0 +1,2 @@
+# Module com.muaki.vaca.caracol.GwtDefinition
+# RPC service class, partial path of RPC policy file

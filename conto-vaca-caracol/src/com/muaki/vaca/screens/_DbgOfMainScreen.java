@@ -96,7 +96,7 @@ public class _DbgOfMainScreen implements Screen {
 		dos = new ModelInstance(model, "pag2");
 		// book.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
 		material = dos.materials.get(0);
-		material.set(new IntAttribute(IntAttribute.CullFace, 0));
+//		material.set(new IntAttribute(IntAttribute.CullFace, 0));
 		node = dos.getNode("pag2");
 		dos.transform.set(node.globalTransform);
 		node.translation.set(0, 0, 0);
@@ -109,7 +109,7 @@ public class _DbgOfMainScreen implements Screen {
 		tres = new ModelInstance(model, "pag3");
 		// book.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
 		material = tres.materials.get(0);
-		material.set(new IntAttribute(IntAttribute.CullFace, 0));
+//		material.set(new IntAttribute(IntAttribute.CullFace, 0));
 		node = tres.getNode("pag3");
 		tres.transform.set(node.globalTransform);
 		node.translation.set(0, 0, 0);
@@ -122,7 +122,7 @@ public class _DbgOfMainScreen implements Screen {
 		cuatro = new ModelInstance(model, "pag4");
 		// book.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
 		material = cuatro.materials.get(0);
-		material.set(new IntAttribute(IntAttribute.CullFace, 0));
+//		material.set(new IntAttribute(IntAttribute.CullFace, 0));
 		node = cuatro.getNode("pag4");
 		cuatro.transform.set(node.globalTransform);
 		node.translation.set(0, 0, 0);
@@ -135,7 +135,7 @@ public class _DbgOfMainScreen implements Screen {
 		
 		cinco = new ModelInstance(model, "pag5");
 		material = cinco.materials.get(0);
-		material.set(new IntAttribute(IntAttribute.CullFace, 0));
+//		material.set(new IntAttribute(IntAttribute.CullFace, 0));
 		node = cinco.getNode("pag5");
 		cinco.transform.set(node.globalTransform);
 		node.translation.set(0, 0, 0);
@@ -147,7 +147,7 @@ public class _DbgOfMainScreen implements Screen {
 
 		seis = new ModelInstance(model, "pag6");
 		material = seis.materials.get(0);
-		material.set(new IntAttribute(IntAttribute.CullFace, 0));
+//		material.set(new IntAttribute(IntAttribute.CullFace, 0));
 		node = seis.getNode("pag6");
 		seis.transform.set(node.globalTransform);
 		node.translation.set(0, 0, 0);
@@ -159,7 +159,7 @@ public class _DbgOfMainScreen implements Screen {
 		
 		contra = new ModelInstance(model, "contra");
 		material = contra.materials.get(0);
-		material.set(new IntAttribute(IntAttribute.CullFace, 0));
+//		material.set(new IntAttribute(IntAttribute.CullFace, 0));
 		node = contra.getNode("contra");
 		contra.transform.set(node.globalTransform);
 		node.translation.set(0, 0, 0);
@@ -171,7 +171,7 @@ public class _DbgOfMainScreen implements Screen {
 		
 		cuberta = new ModelInstance(model, "cuberta");
 		material = cuberta.materials.get(0);
-		material.set(new IntAttribute(IntAttribute.CullFace, 0));
+//		material.set(new IntAttribute(IntAttribute.CullFace, 0));
 		node = cuberta.getNode("cuberta");
 		cuberta.transform.set(node.globalTransform);
 		node.translation.set(0, 0, 0);
@@ -183,7 +183,7 @@ public class _DbgOfMainScreen implements Screen {
 		
 		lombo = new ModelInstance(model, "lombo");
 		material = lombo.materials.get(0);
-		material.set(new IntAttribute(IntAttribute.CullFace, 0));
+//		material.set(new IntAttribute(IntAttribute.CullFace, 0));
 		node = lombo.getNode("lombo");
 		lombo.transform.set(node.globalTransform);
 		node.translation.set(0, 0, 0);
