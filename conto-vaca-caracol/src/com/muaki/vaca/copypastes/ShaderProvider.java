@@ -42,7 +42,7 @@ public class ShaderProvider extends BaseShaderProvider {
 			return new AutumnShader(getDefaultVertexShader(),
 					getDefaultFragmentShader(), renderable.material,
 					renderable.mesh.getVertexAttributes(),
-					renderable.lights != null, 2, 5, 3,
+					renderable.environment != null, 2, 5, 3,
 					renderable.bones == null ? 0 : 12);
 		return new GLES10Shader();
 	}

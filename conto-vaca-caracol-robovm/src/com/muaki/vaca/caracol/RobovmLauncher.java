@@ -1,6 +1,8 @@
 package com.muaki.vaca.caracol;
 
 import org.robovm.cocoatouch.foundation.NSAutoreleasePool;
+import org.robovm.cocoatouch.glkit.GLKViewDrawableMultisample;
+import org.robovm.cocoatouch.glkit.GLKViewDrawableStencilFormat;
 import org.robovm.cocoatouch.uikit.UIApplication;
 
 import com.badlogic.gdx.backends.iosrobovm.IOSApplication;
@@ -12,6 +14,8 @@ public class RobovmLauncher extends IOSApplication.Delegate {
 		IOSApplicationConfiguration config = new IOSApplicationConfiguration();
 		config.orientationLandscape = true;
 		config.orientationPortrait = false;
+		config.multisample = GLKViewDrawableMultisample.Sample4X;
+		config.stencilFormat = GLKViewDrawableStencilFormat.Format8;
 		return new IOSApplication(new CowSnail(), config);
 	}
 

@@ -4,7 +4,12 @@
     <set-configuration-property name="gdx.assetpath" value="../conto-vaca-caracol-android/assets"/>
     <inherits name="CowSnail"/>
     <inherits name="CowSnail"/>
+    <inherits name="CowSnail"/>
+    <inherits name="CowSnail"/>
     <inherits name="aurelienribon.tweenengine"/>
+    <inherits name="aurelienribon.tweenengine"/>
+    <inherits name="com.badlogic.gdx.backends.gdx_backends_gwt"/>
+    <inherits name="com.badlogic.gdx.backends.gdx_backends_gwt"/>
     <inherits name="com.badlogic.gdx.backends.gdx_backends_gwt"/>
     <inherits name="com.badlogic.gdx.backends.gdx_backends_gwt"/>
 </module>

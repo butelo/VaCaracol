@@ -3,11 +3,12 @@ package com.muaki.vaca.caracol;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
+import com.badlogic.gdx.graphics.g3d.Environment;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
-import com.badlogic.gdx.graphics.g3d.lights.DirectionalLight;
-import com.badlogic.gdx.graphics.g3d.lights.Lights;
+//import com.badlogic.gdx.graphics.g3d.lights.DirectionalLight;
+//import com.badlogic.gdx.graphics.g3d.lights.Lights;
 import com.badlogic.gdx.graphics.g3d.utils.AnimationController;
 import com.badlogic.gdx.graphics.g3d.utils.CameraInputController;
 import com.badlogic.gdx.utils.Array;
@@ -17,9 +18,10 @@ public class Animation3DTest implements ApplicationListener {
 	Model floorModel;
 	ModelInstance character;
 	AnimationController animation;
+	public Environment lights;
+	
 
-	Lights lights = new Lights(0.4f, 0.4f, 0.4f).add(new DirectionalLight()
-			.set(0.8f, 0.8f, 0.8f, -1f, -.8f, -.2f));
+
 
 	public PerspectiveCamera cam;
 	public CameraInputController camController;
