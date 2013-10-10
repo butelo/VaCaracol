@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g3d.Environment;
@@ -33,7 +34,7 @@ public class _DbgOfMainScreen implements Screen {
 	public CameraInputController camController;
 	public ModelBatch modelBatch;
 	public AssetManager assets;
-	public Array<ModelInstance> instances = new Array<ModelInstance>();
+	public Array<ContoModelInstance> instances = new Array<ContoModelInstance>();
 	public Environment lights;
 	public boolean loading;
 	public InputMultiplexer mpex;
@@ -42,15 +43,15 @@ public class _DbgOfMainScreen implements Screen {
 	// XXX quitar o log dos frames
 //	public FPSLogger fps;
 
-	public ModelInstance uno;
-	public ModelInstance dos;
-	public ModelInstance tres;
-	public ModelInstance cuatro;
-	public ModelInstance cinco;
-	public ModelInstance seis;
-	public ModelInstance contra;
-	public ModelInstance cuberta;
-	public ModelInstance lombo;
+	public ContoModelInstance uno;
+	public ContoModelInstance dos;
+	public ContoModelInstance tres;
+	public ContoModelInstance cuatro;
+	public ContoModelInstance cinco;
+	public ContoModelInstance seis;
+	public ContoModelInstance contra;
+	public ContoModelInstance cuberta;
+	public ContoModelInstance lombo;
 
 	Node node;
 
@@ -82,8 +83,14 @@ public class _DbgOfMainScreen implements Screen {
 
 	private void doneLoading() {
 		model = assets.get("data/follasdolibrotest4.g3db", Model.class);
+		
+//		Array<Node> jojo = model.nodes;
+//		Gdx.app.log("MuakiBooks: ", jojo.size+"");
+//		for(int i =0; model.nodes.size>i; i++){
+//			Gdx.app.log("MuakiBooks: ", i+"");
+//		}
 
-		uno = new ModelInstance(model, "pag1");
+		uno = new ContoModelInstance(model, "pag1");
 		// book.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
 		material = uno.materials.get(0);
 		material.set(new IntAttribute(IntAttribute.CullFace, 0));
@@ -96,7 +103,7 @@ public class _DbgOfMainScreen implements Screen {
 		uno.transform.rotate(Vector3.X, angleX);
 		instances.add(uno);
 
-		dos = new ModelInstance(model, "pag2");
+		dos = new ContoModelInstance(model, "pag2");
 		// book.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
 		material = dos.materials.get(0);
 //		material.set(new IntAttribute(IntAttribute.CullFace, 0));
@@ -109,7 +116,7 @@ public class _DbgOfMainScreen implements Screen {
 		dos.transform.rotate(Vector3.X, angleX);
 		instances.add(dos);
 
-		tres = new ModelInstance(model, "pag3");
+		tres = new ContoModelInstance(model, "pag3");
 		// book.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
 		material = tres.materials.get(0);
 //		material.set(new IntAttribute(IntAttribute.CullFace, 0));
@@ -122,7 +129,7 @@ public class _DbgOfMainScreen implements Screen {
 		tres.transform.rotate(Vector3.X, angleX);
 		instances.add(tres);
 
-		cuatro = new ModelInstance(model, "pag4");
+		cuatro = new ContoModelInstance(model, "pag4");
 		// book.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
 		material = cuatro.materials.get(0);
 //		material.set(new IntAttribute(IntAttribute.CullFace, 0));
@@ -136,7 +143,7 @@ public class _DbgOfMainScreen implements Screen {
 		instances.add(cuatro);
 		
 		
-		cinco = new ModelInstance(model, "pag5");
+		cinco = new ContoModelInstance(model, "pag5");
 		material = cinco.materials.get(0);
 //		material.set(new IntAttribute(IntAttribute.CullFace, 0));
 		node = cinco.getNode("pag5");
@@ -148,7 +155,7 @@ public class _DbgOfMainScreen implements Screen {
 		cinco.transform.rotate(Vector3.X, angleX);
 		instances.add(cinco);
 
-		seis = new ModelInstance(model, "pag6");
+		seis = new ContoModelInstance(model, "pag6");
 		material = seis.materials.get(0);
 //		material.set(new IntAttribute(IntAttribute.CullFace, 0));
 		node = seis.getNode("pag6");
@@ -160,7 +167,7 @@ public class _DbgOfMainScreen implements Screen {
 		seis.transform.rotate(Vector3.X, angleX);
 		instances.add(seis);
 		
-		contra = new ModelInstance(model, "contra");
+		contra = new ContoModelInstance(model, "contra");
 		material = contra.materials.get(0);
 //		material.set(new IntAttribute(IntAttribute.CullFace, 0));
 		node = contra.getNode("contra");
@@ -172,7 +179,7 @@ public class _DbgOfMainScreen implements Screen {
 		contra.transform.rotate(Vector3.X, angleX);
 		instances.add(contra);
 		
-		cuberta = new ModelInstance(model, "cuberta");
+		cuberta = new ContoModelInstance(model, "cuberta");
 		material = cuberta.materials.get(0);
 //		material.set(new IntAttribute(IntAttribute.CullFace, 0));
 		node = cuberta.getNode("cuberta");
@@ -184,7 +191,7 @@ public class _DbgOfMainScreen implements Screen {
 		cuberta.transform.rotate(Vector3.X, angleX);
 		instances.add(cuberta);
 		
-		lombo = new ModelInstance(model, "lombo");
+		lombo = new ContoModelInstance(model, "lombo");
 		material = lombo.materials.get(0);
 //		material.set(new IntAttribute(IntAttribute.CullFace, 0));
 		node = lombo.getNode("lombo");
@@ -270,7 +277,7 @@ public class _DbgOfMainScreen implements Screen {
 			}
 			if (rotationtotal > -90){
 				dos.transform.rotate(Vector3.X, rotation);
-				dos.transform.translate(0, 0, -0.00006f);
+				dos.transform.translate(0, 0, -0.00006646f);
 			}
 			
 			
