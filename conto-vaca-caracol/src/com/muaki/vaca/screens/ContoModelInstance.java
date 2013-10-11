@@ -7,6 +7,13 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 
 public class ContoModelInstance extends ModelInstance{
+	boolean libroaberto = false;
+	int deltaRx;
+	int deltaY;
+	int deltaZ;
+	boolean visible;
+
+	
 
 	public ContoModelInstance(Model model, Array<String> rootNodeIds) {
 		super(model, rootNodeIds);
@@ -81,12 +88,80 @@ public class ContoModelInstance extends ModelInstance{
 
 	
 	
+public boolean AbrirLibro(){
+	
+	libroaberto = true;
+	
+	return libroaberto;
+	
+}
 
 
+public boolean PecharLibro(){
+	
+	libroaberto = false;
+	
+	return libroaberto;
+	
+}
 
+public void AsignamosValores(int num){
 
-
-
+	
+	switch ( num){
+	case 0:
+		 deltaRx=0;
+		 deltaY=0;
+		 deltaZ=0;
+		 visible=true;
+		
+		break;
+	case 1:
+		 deltaRx=1;
+		 deltaY=1;
+		 deltaZ=1;
+		 visible=true;
+		
+		break;
+		
+	case 2:
+		 deltaRx=2;
+		 deltaY=2;
+		 deltaZ=2;
+		 visible=true;
+		
+		
+		break;
+		
+	case 3:
+		 deltaRx=3;
+		 deltaY=3;
+		 deltaZ=3;
+		 visible=true;
+		
+		break;
+		
+	case 4:
+		 deltaRx=4;
+		 deltaY=4;
+		 deltaZ=4;
+		 visible=true;
+		
+		break;
+		
+	case 5:
+		 deltaRx=5;
+		 deltaY=5;
+		 deltaZ=5;
+		 visible=true;
+		
+		break;
+		
+	
+	
+	}
+		
+}
 
 
 }
