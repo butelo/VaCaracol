@@ -101,6 +101,10 @@ public class _DbgOfMainScreen implements Screen {
 		node.rotation.idt();
 		uno.calculateTransforms();
 		uno.transform.rotate(Vector3.X, angleX);
+//		uno.PecharLibro();
+//		Gdx.app.log("MuakiBooks: ", uno.libroaberto+"");
+		uno.AsignamosValores(3);
+		Gdx.app.log("MuakiBooks: ", uno.deltaY+"");
 		instances.add(uno);
 
 		dos = new ContoModelInstance(model, "pag2");
@@ -114,6 +118,9 @@ public class _DbgOfMainScreen implements Screen {
 		node.rotation.idt();
 		dos.calculateTransforms();
 		dos.transform.rotate(Vector3.X, angleX);
+//		dos.PAGINA1 = true;
+//		dos.AbrirLibro();
+//		Gdx.app.log("MuakiBooks: ", uno.libroaberto+" "+dos.PAGINA1);
 		instances.add(dos);
 
 		tres = new ContoModelInstance(model, "pag3");
