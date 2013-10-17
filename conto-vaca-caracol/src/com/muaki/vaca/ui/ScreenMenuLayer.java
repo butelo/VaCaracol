@@ -151,6 +151,7 @@ public class ScreenMenuLayer extends _DbgOfMainScreen {
 				// Gdx.app.exit();
 				label.setText("padiante");
 				clicadopadiante = true;
+				clicadopatras = false;
 
 				if (crtl.CurrPax < crtl.PaxsTot) {
 					crtl.CurrPax++;
@@ -166,10 +167,11 @@ public class ScreenMenuLayer extends _DbgOfMainScreen {
 		botonRwdFwd.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-//				Gdx.app.log("FPSLogger", "fps: " + Gdx.graphics.getFramesPerSecond());
+				Gdx.app.log("FPSLogger", "fps: " + Gdx.graphics.getFramesPerSecond());
 				
 				
 				clicadopadiante = false;
+				clicadopatras = true;
 
 				// Gdx.app.exit();
 				label.setText("patras");

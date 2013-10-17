@@ -39,6 +39,8 @@ public class _DbgOfMainScreen implements Screen {
 	public boolean loading;
 	public InputMultiplexer mpex;
 	public boolean clicadopadiante = false;
+	public boolean clicadopatras = false;
+
 
 	// XXX quitar o log dos frames
 //	public FPSLogger fps;
@@ -52,6 +54,8 @@ public class _DbgOfMainScreen implements Screen {
 	public ContoModelInstance contra;
 	public ContoModelInstance cuberta;
 	public ContoModelInstance lombo;
+	Vector3 xyz = new Vector3();
+
 
 	Node node;
 
@@ -89,6 +93,37 @@ public class _DbgOfMainScreen implements Screen {
 //		for(int i =0; model.nodes.size>i; i++){
 //			Gdx.app.log("MuakiBooks: ", i+"");
 //		}
+		
+		cinco = new ContoModelInstance(model, "pag5");
+		material = cinco.materials.get(0);
+//		material.set(new IntAttribute(IntAttribute.CullFace, 0));
+		node = cinco.getNode("pag5");
+		cinco.transform.set(node.globalTransform);
+		node.translation.set(0, 0, 0);
+		node.scale.set(1, 1, 1);
+		node.rotation.idt();
+		cinco.calculateTransforms();
+		cinco.pagename="p5";
+
+		instances.add(cinco);
+		
+		
+		tres = new ContoModelInstance(model, "pag3");
+		// book.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
+		material = tres.materials.get(0);
+//		material.set(new IntAttribute(IntAttribute.CullFace, 0));
+		node = tres.getNode("pag3");
+		tres.transform.set(node.globalTransform);
+		node.translation.set(0, 0, 0);
+		node.scale.set(1, 1, 1);
+		node.rotation.idt();
+		tres.calculateTransforms();
+		tres.pagename="p3";
+
+		instances.add(tres);
+		
+		
+		
 
 		uno = new ContoModelInstance(model, "pag1");
 		// book.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
@@ -100,11 +135,13 @@ public class _DbgOfMainScreen implements Screen {
 		node.scale.set(1, 1, 1);
 		node.rotation.idt();
 		uno.calculateTransforms();
-		uno.transform.rotate(Vector3.X, angleX);
 //		uno.PecharLibro();
 //		Gdx.app.log("MuakiBooks: ", uno.libroaberto+"");
-		uno.AsignamosValores(3);
-		Gdx.app.log("MuakiBooks: ", uno.deltaY+"");
+//		uno.AsignamosValores(3);
+//		Gdx.app.log("MuakiBooks: ", uno.deltaY+"");
+		
+//		nome da páxina solamente para debugear
+		uno.pagename="p1";
 		instances.add(uno);
 
 		dos = new ContoModelInstance(model, "pag2");
@@ -117,24 +154,14 @@ public class _DbgOfMainScreen implements Screen {
 		node.scale.set(1, 1, 1);
 		node.rotation.idt();
 		dos.calculateTransforms();
-		dos.transform.rotate(Vector3.X, angleX);
 //		dos.PAGINA1 = true;
 //		dos.AbrirLibro();
 //		Gdx.app.log("MuakiBooks: ", uno.libroaberto+" "+dos.PAGINA1);
+		dos.pagename="p2";
+
 		instances.add(dos);
 
-		tres = new ContoModelInstance(model, "pag3");
-		// book.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
-		material = tres.materials.get(0);
-//		material.set(new IntAttribute(IntAttribute.CullFace, 0));
-		node = tres.getNode("pag3");
-		tres.transform.set(node.globalTransform);
-		node.translation.set(0, 0, 0);
-		node.scale.set(1, 1, 1);
-		node.rotation.idt();
-		tres.calculateTransforms();
-		tres.transform.rotate(Vector3.X, angleX);
-		instances.add(tres);
+
 
 		cuatro = new ContoModelInstance(model, "pag4");
 		// book.transform.setToRotation(Vector3.Y, 180).trn(0, 0, 6f);
@@ -146,21 +173,12 @@ public class _DbgOfMainScreen implements Screen {
 		node.scale.set(1, 1, 1);
 		node.rotation.idt();
 		cuatro.calculateTransforms();
-		cuatro.transform.rotate(Vector3.X, angleX);
+		cuatro.pagename="p4";
+
 		instances.add(cuatro);
 		
 		
-		cinco = new ContoModelInstance(model, "pag5");
-		material = cinco.materials.get(0);
-//		material.set(new IntAttribute(IntAttribute.CullFace, 0));
-		node = cinco.getNode("pag5");
-		cinco.transform.set(node.globalTransform);
-		node.translation.set(0, 0, 0);
-		node.scale.set(1, 1, 1);
-		node.rotation.idt();
-		cinco.calculateTransforms();
-		cinco.transform.rotate(Vector3.X, angleX);
-		instances.add(cinco);
+
 
 		seis = new ContoModelInstance(model, "pag6");
 		material = seis.materials.get(0);
@@ -171,7 +189,7 @@ public class _DbgOfMainScreen implements Screen {
 		node.scale.set(1, 1, 1);
 		node.rotation.idt();
 		seis.calculateTransforms();
-		seis.transform.rotate(Vector3.X, angleX);
+		seis.pagename="p6";
 		instances.add(seis);
 		
 		contra = new ContoModelInstance(model, "contra");
@@ -183,7 +201,6 @@ public class _DbgOfMainScreen implements Screen {
 		node.scale.set(1, 1, 1);
 		node.rotation.idt();
 		contra.calculateTransforms();
-		contra.transform.rotate(Vector3.X, angleX);
 		instances.add(contra);
 		
 		cuberta = new ContoModelInstance(model, "cuberta");
@@ -195,7 +212,6 @@ public class _DbgOfMainScreen implements Screen {
 		node.scale.set(1, 1, 1);
 		node.rotation.idt();
 		cuberta.calculateTransforms();
-		cuberta.transform.rotate(Vector3.X, angleX);
 		instances.add(cuberta);
 		
 		lombo = new ContoModelInstance(model, "lombo");
@@ -207,7 +223,6 @@ public class _DbgOfMainScreen implements Screen {
 		node.scale.set(1, 1, 1);
 		node.rotation.idt();
 		lombo.calculateTransforms();
-		lombo.transform.rotate(Vector3.X, angleX);
 		instances.add(lombo);
 
 		loading = false;
@@ -248,16 +263,23 @@ public class _DbgOfMainScreen implements Screen {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
 		modelBatch.begin(cam);
-
 		for (ModelInstance instance : instances) {
 			modelBatch.render(instance, lights);
 
-			rotation = -10 * Gdx.graphics.getDeltaTime();
-
-			rotaciondolibro();
-			
+			if(crtl.CurrPax==0){
+			abrirLibro();
+			}
+			else if(crtl.CurrPax<crtl.PaxsTot){
+				rotaciondolibro();
+			}else{
+				pecharLibro();
+			}
+//			rotaciondolibro();
 
 		}
+
+//		rotaciondolibro();
+		
 
 		modelBatch.end();
 
@@ -266,30 +288,84 @@ public class _DbgOfMainScreen implements Screen {
 
 	}
 
-	private void rotaciondolibro() {
+	private void pecharLibro() {
+		
+//		aqui hai que pechar o libro
+	}
+
+	private void abrirLibro() {
+		rotation = -10 * Gdx.graphics.getDeltaTime();
 		if (rotationtotal > -100 && clicadopadiante) {
 			
-//			uno.transform.rotate(Vector3.X, rotation);
-//			
+			cuberta.transform.rotate(Vector3.X, rotation);
+			seis.transform.rotate(Vector3.X, rotation);
+			seis.transform.translate(0, 0.00017f, 0.00015f);
+
+			
+//			if (rotationtotal > -95){
+				cuatro.transform.rotate(Vector3.X, rotation);
+				cuatro.transform.translate(0, 0, 0.00016f);
+
+//			}
+			
+			if (rotationtotal > -95){
+				dos.transform.rotate(Vector3.X, rotation);
+				dos.transform.translate(0, 0, -0.00008f);
+			}
+						
 			if (rotationtotal > -15){
 				lombo.transform.rotate(Vector3.X, rotation);
 			}
 			
-			cuberta.transform.rotate(Vector3.X, rotation);
-			seis.transform.rotate(Vector3.X, rotation);
-			
-			
-			if (rotationtotal > -95){
-				cuatro.transform.rotate(Vector3.X, rotation);
-			}
-			if (rotationtotal > -90){
-				dos.transform.rotate(Vector3.X, rotation);
-				dos.transform.translate(0, 0, -0.00006646f);
-			}
-			
-			
 			rotationtotal += rotation;
-		}		
+		}	
+//		xyz = seis.transform.getTranslation(xyz);
+//		 Gdx.app.log("posicion seis ", ""+xyz.x + " "+xyz.y+" "+ xyz.z );
+		
+	}
+	
+
+	
+	
+	
+	
+
+	private void rotaciondolibro() {
+		
+		rotation = -10 * Gdx.graphics.getDeltaTime();
+		if (clicadopadiante){
+			
+			
+			
+			
+//			seis.PasamosPaxina((crtl.CurrPax+5)%6, seis);
+			for (int i= 0;i < instances.size-3; i++  ){
+//				uno.PasamosPaxina((crtl.CurrPax)%6);
+//				dos.PasamosPaxina((crtl.CurrPax+1)%6);
+//				tres.PasamosPaxina((crtl.CurrPax+2)%6);
+//				cuatro.PasamosPaxina((crtl.CurrPax+3)%6);
+//				cinco.PasamosPaxina((crtl.CurrPax+4)%6);
+//				seis.PasamosPaxina((crtl.CurrPax+5)%6);
+				
+				instances.get(i).PasamosPaxina((crtl.CurrPax+i)%6, instances.get(i));
+				
+			}
+			
+			
+	
+			
+			clicadopadiante= false;
+			
+		}else if (clicadopatras){
+			for (int i= 0;i < instances.size-3; i++  ){				
+				instances.get(i).PasamosPaxina((crtl.CurrPax+i)%6, instances.get(i));
+				
+			}
+			
+			clicadopatras= false;
+		}
+		
+		
 	}
 
 	@Override

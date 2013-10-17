@@ -15,7 +15,7 @@ public final int LANG_GL = 2;
 
 public int CURRLANG = LANG_EN ;
 
-public static  int CURRPAX=0;
+public static  int CURRPAX=-1;
 
 public boolean SOUNDPLAY = true;
 public boolean MUSICPLAY = true;

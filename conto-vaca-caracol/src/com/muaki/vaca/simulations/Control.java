@@ -10,7 +10,7 @@ public class Control {
 	
 //	os ciclos cortos son para cargar as paxs na mamoria
 	public int CicloCorto(){
-		return CurrPax%4;
+		return CurrPax%6;
 		
 	}
 	

@@ -1,5 +1,6 @@
 package com.muaki.vaca.screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.math.Matrix4;
@@ -12,6 +13,9 @@ public class ContoModelInstance extends ModelInstance{
 	int deltaY;
 	int deltaZ;
 	boolean visible;
+	/** nome da paxina para debugear **/
+	String pagename;
+//	private float[] posicion;
 
 	
 
@@ -105,55 +109,125 @@ public boolean PecharLibro(){
 	
 }
 
-public void AsignamosValores(int num){
-
+public void PasamosPaxina(int num, ContoModelInstance modelInstance){
+	int cordenada =5;
+	String valoress= " ";
+	Vector3 xyz = new Vector3();
 	
 	switch ( num){
 	case 0:
-		 deltaRx=0;
-		 deltaY=0;
-		 deltaZ=0;
-		 visible=true;
+		modelInstance.transform.rotate(Vector3.X, 100);
+//		modelInstance.transform.translate(0, 0, 0);
+		xyz.x = 0;
+		xyz.y = 0.044f;
+		xyz.z = -0.99f;
+		modelInstance.transform.setTranslation(xyz);
+		
+		
+		xyz = modelInstance.transform.getTranslation(xyz);
+		
+		valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z;
+		
+		
+		 
+		
+		
+		 Gdx.app.log("FPSLogger", "paxina "+pagename +" pasa a ser case "+num+ " "+ valoress);
+	
 		
 		break;
 	case 1:
-		 deltaRx=1;
-		 deltaY=1;
-		 deltaZ=1;
-		 visible=true;
+//		modelInstance.transform.rotate(Vector3.X, -95);
+		
+		modelInstance.transform.translate(0, 0f, 0.06f);
+		
+		
+		
+		
+	
+			xyz = modelInstance.transform.getTranslation(xyz);
+
+			valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z;
+
+		 
+		 Gdx.app.log("FPSLogger", "paxina "+pagename +" pasa a ser case "+num+ " "+ valoress);
+	
 		
 		break;
 		
 	case 2:
-		 deltaRx=2;
-		 deltaY=2;
-		 deltaZ=2;
-		 visible=true;
+//		modelInstance.transform.rotate(Vector3.X, 0);
+		modelInstance.transform.translate(0, 0f, 0.04f);			
+
 		
+		
+
+		 
+			xyz = modelInstance.transform.getTranslation(xyz);
+
+			valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z;
+
+
+		 Gdx.app.log("FPSLogger", "paxina "+pagename +" pasa a ser case "+num+ " "+ valoress);
+
 		
 		break;
 		
 	case 3:
-		 deltaRx=3;
-		 deltaY=3;
-		 deltaZ=3;
-		 visible=true;
+//		modelInstance.transform.rotate(Vector3.X, 0);
+		modelInstance.transform.rotate(Vector3.X, -95).translate(0, 0f, 0);	
 		
+
+		
+		 
+			xyz = modelInstance.transform.getTranslation(xyz);
+
+			valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z;
+
+		
+		 
+		 Gdx.app.log("FPSLogger", "paxina "+pagename +" pasa a ser case "+num+ " "+ valoress);
+
 		break;
 		
 	case 4:
-		 deltaRx=4;
-		 deltaY=4;
-		 deltaZ=4;
-		 visible=true;
+//		modelInstance.transform.rotate(Vector3.X, -95);
+		modelInstance.transform.translate(0,  -0.12f, 0.05f).rotate(Vector3.X, -5);	
+
+		
+	
+		 
+			xyz = modelInstance.transform.getTranslation(xyz);
+
+			valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z;
+
+		 
+	
+		 Gdx.app.log("FPSLogger", "paxina "+pagename +" pasa a ser case "+num+ " "+ valoress);
+	
 		
 		break;
 		
 	case 5:
-		 deltaRx=5;
-		 deltaY=5;
-		 deltaZ=5;
-		 visible=true;
+//		modelInstance.transform.rotate(Vector3.X, -5);
+		
+		modelInstance.transform.translate(0, -0.012f, 0.048f);	
+		xyz.x = 0;
+		xyz.y = 0.2540f;
+		xyz.z = -1.1168f;
+		modelInstance.transform.setTranslation(xyz);
+
+
+
+		 
+			xyz = modelInstance.transform.getTranslation(xyz);
+
+		 
+			valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z;
+
+		 
+		 Gdx.app.log("FPSLogger", "paxina "+pagename +" pasa a ser case "+num+ " "+ valoress);
+	
 		
 		break;
 		
@@ -162,6 +236,7 @@ public void AsignamosValores(int num){
 	}
 		
 }
+
 
 
 }
