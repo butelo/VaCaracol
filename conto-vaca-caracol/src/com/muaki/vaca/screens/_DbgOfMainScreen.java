@@ -1,5 +1,8 @@
 package com.muaki.vaca.screens;
 
+import aurelienribon.tweenengine.Tween;
+import aurelienribon.tweenengine.TweenManager;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
@@ -28,6 +31,7 @@ import com.badlogic.gdx.graphics.g3d.utils.CameraInputController;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.muaki.vaca.simulations.Control;
+import com.muaki.vaca.tween.CMIAccessor;
 
 public class _DbgOfMainScreen implements Screen {
 	public PerspectiveCamera cam;
@@ -55,7 +59,7 @@ public class _DbgOfMainScreen implements Screen {
 	public ContoModelInstance cuberta;
 	public ContoModelInstance lombo;
 	Vector3 xyz = new Vector3();
-
+	 private TweenManager twman;
 
 	Node node;
 
@@ -240,6 +244,7 @@ public class _DbgOfMainScreen implements Screen {
 
 	@Override
 	public void render(float delta) {
+		twman.update(delta);
 
 		total += 1;
 		if (total > 500) {
@@ -380,6 +385,9 @@ public class _DbgOfMainScreen implements Screen {
 
 	@Override
 	public void show() {
+		twman = new TweenManager();
+		Tween.registerAccessor(ContoModelInstance.class, new CMIAccessor());
+		
 		mpex = new InputMultiplexer();
 
 		// XXX quitar o log dos frames

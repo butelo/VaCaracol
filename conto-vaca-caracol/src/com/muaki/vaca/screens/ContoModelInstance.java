@@ -1,5 +1,6 @@
 package com.muaki.vaca.screens;
 
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
@@ -9,7 +10,7 @@ import com.badlogic.gdx.utils.Array;
 
 public class ContoModelInstance extends ModelInstance{
 	boolean libroaberto = false;
-	int deltaRx;
+	public float deltaRx;
 	int deltaY;
 	int deltaZ;
 	boolean visible;
@@ -122,11 +123,11 @@ public void PasamosPaxina(int num, ContoModelInstance modelInstance){
 		xyz.y = 0.044f;
 		xyz.z = -0.99f;
 		modelInstance.transform.setTranslation(xyz);
-		
+		deltaRx = 0;
 		
 		xyz = modelInstance.transform.getTranslation(xyz);
 		
-		valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z;
+		valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z + "rotate"+modelInstance.deltaRx ;
 		
 		
 		 
@@ -143,11 +144,12 @@ public void PasamosPaxina(int num, ContoModelInstance modelInstance){
 		
 		
 		
-		
+		deltaRx = 0;
+
 	
 			xyz = modelInstance.transform.getTranslation(xyz);
 
-			valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z;
+			valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z + "rotate"+modelInstance.deltaRx ;
 
 		 
 		 Gdx.app.log("FPSLogger", "paxina "+pagename +" pasa a ser case "+num+ " "+ valoress);
@@ -160,12 +162,13 @@ public void PasamosPaxina(int num, ContoModelInstance modelInstance){
 		modelInstance.transform.translate(0, 0f, 0.04f);			
 
 		
-		
+		deltaRx = 0;
+
 
 		 
 			xyz = modelInstance.transform.getTranslation(xyz);
 
-			valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z;
+			valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z + "rotate"+modelInstance.deltaRx ;
 
 
 		 Gdx.app.log("FPSLogger", "paxina "+pagename +" pasa a ser case "+num+ " "+ valoress);
@@ -177,12 +180,13 @@ public void PasamosPaxina(int num, ContoModelInstance modelInstance){
 //		modelInstance.transform.rotate(Vector3.X, 0);
 		modelInstance.transform.rotate(Vector3.X, -95).translate(0, 0f, 0);	
 		
+		deltaRx = -95;
 
 		
 		 
 			xyz = modelInstance.transform.getTranslation(xyz);
 
-			valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z;
+			valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z + "rotate"+modelInstance.deltaRx ;
 
 		
 		 
@@ -195,11 +199,12 @@ public void PasamosPaxina(int num, ContoModelInstance modelInstance){
 		modelInstance.transform.translate(0,  -0.12f, 0.05f).rotate(Vector3.X, -5);	
 
 		
-	
+		deltaRx = -100;
+
 		 
 			xyz = modelInstance.transform.getTranslation(xyz);
 
-			valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z;
+			valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z + "rotate"+modelInstance.deltaRx ;
 
 		 
 	
@@ -218,12 +223,13 @@ public void PasamosPaxina(int num, ContoModelInstance modelInstance){
 		modelInstance.transform.setTranslation(xyz);
 
 
+		deltaRx = -100;
 
 		 
 			xyz = modelInstance.transform.getTranslation(xyz);
 
 		 
-			valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z;
+			valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z + "rotate"+modelInstance.deltaRx ;
 
 		 
 		 Gdx.app.log("FPSLogger", "paxina "+pagename +" pasa a ser case "+num+ " "+ valoress);
