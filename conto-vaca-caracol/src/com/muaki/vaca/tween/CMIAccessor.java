@@ -35,8 +35,7 @@ public class CMIAccessor implements TweenAccessor<ContoModelInstance> {
 	public void setValues(ContoModelInstance target, int tweenType, float[] newValues) {
 	switch(tweenType){
 	case ROTTRANS:
-		target.transform.translate(0, newValues[0], newValues[1]);
-		target.transform.rotate(Vector3.X, newValues[2]);
+		target.transform.translate(0, newValues[0], newValues[1]).rotate(Vector3.X, newValues[2]);
 		break;
 		default:
 			assert false;

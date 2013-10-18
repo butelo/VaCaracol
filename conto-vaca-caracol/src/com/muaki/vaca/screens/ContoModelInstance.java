@@ -16,6 +16,7 @@ public class ContoModelInstance extends ModelInstance{
 	boolean visible;
 	/** nome da paxina para debugear **/
 	String pagename;
+	String valoress= " ";
 //	private float[] posicion;
 
 	
@@ -110,10 +111,9 @@ public boolean PecharLibro(){
 	
 }
 
-public void PasamosPaxina(int num, ContoModelInstance modelInstance){
-	int cordenada =5;
-	String valoress= " ";
-	Vector3 xyz = new Vector3();
+public void PasamosPaxina(int num, ContoModelInstance modelInstance, Vector3 xyz){
+
+
 	
 	switch ( num){
 	case 0:
@@ -135,7 +135,7 @@ public void PasamosPaxina(int num, ContoModelInstance modelInstance){
 		
 		 Gdx.app.log("FPSLogger", "paxina "+pagename +" pasa a ser case "+num+ " "+ valoress);
 	
-		
+		 valoress="";
 		break;
 	case 1:
 //		modelInstance.transform.rotate(Vector3.X, -95);
@@ -173,7 +173,7 @@ public void PasamosPaxina(int num, ContoModelInstance modelInstance){
 
 		 Gdx.app.log("FPSLogger", "paxina "+pagename +" pasa a ser case "+num+ " "+ valoress);
 
-		
+		 valoress="";
 		break;
 		
 	case 3:
@@ -191,7 +191,7 @@ public void PasamosPaxina(int num, ContoModelInstance modelInstance){
 		
 		 
 		 Gdx.app.log("FPSLogger", "paxina "+pagename +" pasa a ser case "+num+ " "+ valoress);
-
+		 valoress="";
 		break;
 		
 	case 4:
@@ -209,7 +209,7 @@ public void PasamosPaxina(int num, ContoModelInstance modelInstance){
 		 
 	
 		 Gdx.app.log("FPSLogger", "paxina "+pagename +" pasa a ser case "+num+ " "+ valoress);
-	
+		 valoress="";
 		
 		break;
 		
@@ -233,7 +233,7 @@ public void PasamosPaxina(int num, ContoModelInstance modelInstance){
 
 		 
 		 Gdx.app.log("FPSLogger", "paxina "+pagename +" pasa a ser case "+num+ " "+ valoress);
-	
+		 valoress="";
 		
 		break;
 		

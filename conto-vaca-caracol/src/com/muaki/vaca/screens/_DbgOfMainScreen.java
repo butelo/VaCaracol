@@ -1,5 +1,6 @@
 package com.muaki.vaca.screens;
 
+import aurelienribon.tweenengine.Timeline;
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenManager;
 
@@ -144,7 +145,7 @@ public class _DbgOfMainScreen implements Screen {
 //		uno.AsignamosValores(3);
 //		Gdx.app.log("MuakiBooks: ", uno.deltaY+"");
 		
-//		nome da páxina solamente para debugear
+//		nome da p��xina solamente para debugear
 		uno.pagename="p1";
 		instances.add(uno);
 
@@ -246,6 +247,7 @@ public class _DbgOfMainScreen implements Screen {
 	public void render(float delta) {
 		twman.update(delta);
 
+	
 		total += 1;
 		if (total > 500) {
 			movementIncrement = -movementIncrement;
@@ -352,7 +354,8 @@ public class _DbgOfMainScreen implements Screen {
 //				cinco.PasamosPaxina((crtl.CurrPax+4)%6);
 //				seis.PasamosPaxina((crtl.CurrPax+5)%6);
 				
-				instances.get(i).PasamosPaxina((crtl.CurrPax+i)%6, instances.get(i));
+				instances.get(i).PasamosPaxina((crtl.CurrPax+i)%6, instances.get(i), xyz);
+				
 				
 			}
 			
@@ -363,7 +366,7 @@ public class _DbgOfMainScreen implements Screen {
 			
 		}else if (clicadopatras){
 			for (int i= 0;i < instances.size-3; i++  ){				
-				instances.get(i).PasamosPaxina((crtl.CurrPax+i)%6, instances.get(i));
+				instances.get(i).PasamosPaxina((crtl.CurrPax+i)%6, instances.get(i),xyz);
 				
 			}
 			
@@ -386,7 +389,17 @@ public class _DbgOfMainScreen implements Screen {
 	@Override
 	public void show() {
 		twman = new TweenManager();
+		
+		
+		
+		
 		Tween.registerAccessor(ContoModelInstance.class, new CMIAccessor());
+		
+
+		
+		
+	
+	
 		
 		mpex = new InputMultiplexer();
 
