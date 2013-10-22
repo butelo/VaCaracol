@@ -3,6 +3,7 @@ package com.muaki.vaca.caracol.desktopproject;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.muaki.vaca.caracol.CowSnail;
+import com.muaki.vaca.copypastes.TweenRotTest;
 
 public class Main {
 	public static void main(String[] args) {
@@ -14,7 +15,9 @@ public class Main {
 		cfg.vSyncEnabled = true;
 		
 
-		new LwjglApplication(new CowSnail(), cfg);
+//		new LwjglApplication(new CowSnail(), cfg);
+		new LwjglApplication(new TweenRotTest(), cfg);
+
 
 	}
 }

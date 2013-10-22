@@ -8,9 +8,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g3d.Environment;
@@ -18,9 +16,6 @@ import com.badlogic.gdx.graphics.g3d.Material;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
-
-
-
 import com.badlogic.gdx.graphics.g3d.attributes.BlendingAttribute;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.attributes.IntAttribute;
@@ -61,12 +56,13 @@ public class _DbgOfMainScreen implements Screen {
 	public ContoModelInstance lombo;
 	Vector3 xyz = new Vector3();
 	 private TweenManager twman;
+	 Timeline taimlain;
 
 	Node node;
 
 	float angleX = 0;
 
-	float rotation;
+	float incremento;
 
 	TextureAttribute textureAttribute;
 	ColorAttribute colorAttribute;
@@ -145,7 +141,7 @@ public class _DbgOfMainScreen implements Screen {
 //		uno.AsignamosValores(3);
 //		Gdx.app.log("MuakiBooks: ", uno.deltaY+"");
 		
-//		nome da p��xina solamente para debugear
+//		nome da paxina solamente para debugear
 		uno.pagename="p1";
 		instances.add(uno);
 
@@ -217,6 +213,7 @@ public class _DbgOfMainScreen implements Screen {
 		node.scale.set(1, 1, 1);
 		node.rotation.idt();
 		cuberta.calculateTransforms();
+		cuberta.deltaRx=0;
 		instances.add(cuberta);
 		
 		lombo = new ContoModelInstance(model, "lombo");
@@ -229,6 +226,30 @@ public class _DbgOfMainScreen implements Screen {
 		node.rotation.idt();
 		lombo.calculateTransforms();
 		instances.add(lombo);
+		
+		
+//		 cuberta.transform.setToRotation(Vector3.X,-100);
+		 
+//		 cuberta.transform.setToRotation(Vector3.Y,90);
+
+
+			
+//	Quaternion quat;
+////	Tween.set(cuberta, CMIAccessor.ROTATION).target(0).start(twman);
+//		Tween.to(cuberta, CMIAccessor.ROTATION,2f).target(-100f).start(twman);
+
+		
+
+			
+		
+			
+		
+		
+		
+		
+			
+		
+		
 
 		loading = false;
 	}
@@ -246,7 +267,6 @@ public class _DbgOfMainScreen implements Screen {
 	@Override
 	public void render(float delta) {
 		twman.update(delta);
-
 	
 		total += 1;
 		if (total > 500) {
@@ -301,30 +321,37 @@ public class _DbgOfMainScreen implements Screen {
 	}
 
 	private void abrirLibro() {
-		rotation = -10 * Gdx.graphics.getDeltaTime();
+//		if (clicadopadiante){
+//			twman.update(Gdx.graphics.getDeltaTime());
+//			taimlain.start(twman);
+//			clicadopadiante = false;
+//		}
+		 
+		
+		incremento = -10 * Gdx.graphics.getDeltaTime();
 		if (rotationtotal > -100 && clicadopadiante) {
-			
-			cuberta.transform.rotate(Vector3.X, rotation);
-			seis.transform.rotate(Vector3.X, rotation);
+//			
+			cuberta.transform.rotate(Vector3.X, incremento);
+			seis.transform.rotate(Vector3.X, incremento);
 			seis.transform.translate(0, 0.00017f, 0.00015f);
 
 			
 //			if (rotationtotal > -95){
-				cuatro.transform.rotate(Vector3.X, rotation);
+				cuatro.transform.rotate(Vector3.X, incremento);
 				cuatro.transform.translate(0, 0, 0.00016f);
 
 //			}
 			
 			if (rotationtotal > -95){
-				dos.transform.rotate(Vector3.X, rotation);
+				dos.transform.rotate(Vector3.X, incremento);
 				dos.transform.translate(0, 0, -0.00008f);
 			}
 						
 			if (rotationtotal > -15){
-				lombo.transform.rotate(Vector3.X, rotation);
+				lombo.transform.rotate(Vector3.X, incremento);
 			}
 			
-			rotationtotal += rotation;
+			rotationtotal += incremento;
 		}	
 //		xyz = seis.transform.getTranslation(xyz);
 //		 Gdx.app.log("posicion seis ", ""+xyz.x + " "+xyz.y+" "+ xyz.z );
@@ -339,7 +366,7 @@ public class _DbgOfMainScreen implements Screen {
 
 	private void rotaciondolibro() {
 		
-		rotation = -10 * Gdx.graphics.getDeltaTime();
+//		incremento = -10 * Gdx.graphics.getDeltaTime();
 		if (clicadopadiante){
 			
 			
@@ -354,7 +381,7 @@ public class _DbgOfMainScreen implements Screen {
 //				cinco.PasamosPaxina((crtl.CurrPax+4)%6);
 //				seis.PasamosPaxina((crtl.CurrPax+5)%6);
 				
-				instances.get(i).PasamosPaxina((crtl.CurrPax+i)%6, instances.get(i), xyz);
+				instances.get(i).PasamosPaxina((crtl.CurrPax+i)%6, xyz);
 				
 				
 			}
@@ -366,7 +393,7 @@ public class _DbgOfMainScreen implements Screen {
 			
 		}else if (clicadopatras){
 			for (int i= 0;i < instances.size-3; i++  ){				
-				instances.get(i).PasamosPaxina((crtl.CurrPax+i)%6, instances.get(i),xyz);
+				instances.get(i).PasamosPaxina((crtl.CurrPax+i)%6,xyz);
 				
 			}
 			
@@ -395,9 +422,8 @@ public class _DbgOfMainScreen implements Screen {
 		
 		Tween.registerAccessor(ContoModelInstance.class, new CMIAccessor());
 		
+		
 
-		
-		
 	
 	
 		

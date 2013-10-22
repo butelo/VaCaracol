@@ -2,25 +2,21 @@ package com.muaki.vaca.tween;
 
 import aurelienribon.tweenengine.TweenAccessor;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Quaternion;
+import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.math.Vector3;
-import com.muaki.vaca.screens.ContoModelInstance;
 
-public class CMIAccessor implements TweenAccessor<ContoModelInstance> {
-	public static final int ROTTRANS=0;
-	Vector3 vector = new Vector3();
+public class CMIAccessor implements TweenAccessor<ModelInstance> {
+	public static final int ROTATION=0;
+
 
 
 	@Override
-	public int getValues(ContoModelInstance target, int tweenType, float[] returnValues) {
+	public int getValues(ModelInstance target, int tweenType, float[] returnValues) {
 		switch(tweenType){
-		case ROTTRANS:
-			returnValues[0]=target.transform.getTranslation(vector).y;
-			returnValues[1]=target.transform.getTranslation(vector).z;
-			returnValues[2]=target.deltaRx;
 			
-			return 3;
+		case ROTATION:
+			returnValues[0]=0;
+			return 1;
 		default:
 			assert false;
 			return -1;
@@ -32,11 +28,15 @@ public class CMIAccessor implements TweenAccessor<ContoModelInstance> {
 	}
 
 	@Override
-	public void setValues(ContoModelInstance target, int tweenType, float[] newValues) {
+	public void setValues(ModelInstance target, int tweenType, float[] newValues) {
 	switch(tweenType){
-	case ROTTRANS:
-		target.transform.translate(0, newValues[0], newValues[1]).rotate(Vector3.X, newValues[2]);
-		break;
+
+		
+	case ROTATION:
+
+		target.transform.setToRotation(Vector3.X, newValues[0]);		
+break;		
+	
 		default:
 			assert false;
 		

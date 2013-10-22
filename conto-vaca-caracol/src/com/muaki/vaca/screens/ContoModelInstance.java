@@ -111,23 +111,23 @@ public boolean PecharLibro(){
 	
 }
 
-public void PasamosPaxina(int num, ContoModelInstance modelInstance, Vector3 xyz){
+public void PasamosPaxina(int num, Vector3 xyz){
 
 
 	
 	switch ( num){
 	case 0:
-		modelInstance.transform.rotate(Vector3.X, 100);
+		this.transform.rotate(Vector3.X, 100);
 //		modelInstance.transform.translate(0, 0, 0);
 		xyz.x = 0;
 		xyz.y = 0.044f;
 		xyz.z = -0.99f;
-		modelInstance.transform.setTranslation(xyz);
+		this.transform.setTranslation(xyz);
 		deltaRx = 0;
 		
-		xyz = modelInstance.transform.getTranslation(xyz);
+		xyz = this.transform.getTranslation(xyz);
 		
-		valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z + "rotate"+modelInstance.deltaRx ;
+		valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z + "rotate"+this.deltaRx ;
 		
 		
 		 
@@ -140,16 +140,16 @@ public void PasamosPaxina(int num, ContoModelInstance modelInstance, Vector3 xyz
 	case 1:
 //		modelInstance.transform.rotate(Vector3.X, -95);
 		
-		modelInstance.transform.translate(0, 0f, 0.06f);
+		this.transform.translate(0, 0f, 0.06f);
 		
 		
 		
 		deltaRx = 0;
 
 	
-			xyz = modelInstance.transform.getTranslation(xyz);
+			xyz = this.transform.getTranslation(xyz);
 
-			valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z + "rotate"+modelInstance.deltaRx ;
+			valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z + "rotate"+this.deltaRx ;
 
 		 
 		 Gdx.app.log("FPSLogger", "paxina "+pagename +" pasa a ser case "+num+ " "+ valoress);
@@ -159,16 +159,16 @@ public void PasamosPaxina(int num, ContoModelInstance modelInstance, Vector3 xyz
 		
 	case 2:
 //		modelInstance.transform.rotate(Vector3.X, 0);
-		modelInstance.transform.translate(0, 0f, 0.04f);			
+		this.transform.translate(0, 0f, 0.04f);			
 
 		
 		deltaRx = 0;
 
 
 		 
-			xyz = modelInstance.transform.getTranslation(xyz);
+			xyz = this.transform.getTranslation(xyz);
 
-			valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z + "rotate"+modelInstance.deltaRx ;
+			valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z + "rotate"+this.deltaRx ;
 
 
 		 Gdx.app.log("FPSLogger", "paxina "+pagename +" pasa a ser case "+num+ " "+ valoress);
@@ -178,15 +178,15 @@ public void PasamosPaxina(int num, ContoModelInstance modelInstance, Vector3 xyz
 		
 	case 3:
 //		modelInstance.transform.rotate(Vector3.X, 0);
-		modelInstance.transform.rotate(Vector3.X, -95).translate(0, 0f, 0);	
+		this.transform.rotate(Vector3.X, -95).translate(0, 0f, 0);	
 		
 		deltaRx = -95;
 
 		
 		 
-			xyz = modelInstance.transform.getTranslation(xyz);
+			xyz = this.transform.getTranslation(xyz);
 
-			valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z + "rotate"+modelInstance.deltaRx ;
+			valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z + "rotate"+this.deltaRx ;
 
 		
 		 
@@ -196,15 +196,15 @@ public void PasamosPaxina(int num, ContoModelInstance modelInstance, Vector3 xyz
 		
 	case 4:
 //		modelInstance.transform.rotate(Vector3.X, -95);
-		modelInstance.transform.translate(0,  -0.12f, 0.05f).rotate(Vector3.X, -5);	
+		this.transform.translate(0,  -0.12f, 0.05f).rotate(Vector3.X, -5);	
 
 		
 		deltaRx = -100;
 
 		 
-			xyz = modelInstance.transform.getTranslation(xyz);
+			xyz = this.transform.getTranslation(xyz);
 
-			valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z + "rotate"+modelInstance.deltaRx ;
+			valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z + "rotate"+this.deltaRx ;
 
 		 
 	
@@ -216,20 +216,20 @@ public void PasamosPaxina(int num, ContoModelInstance modelInstance, Vector3 xyz
 	case 5:
 //		modelInstance.transform.rotate(Vector3.X, -5);
 		
-		modelInstance.transform.translate(0, -0.012f, 0.048f);	
+		this.transform.translate(0, -0.012f, 0.048f);	
 		xyz.x = 0;
 		xyz.y = 0.2540f;
 		xyz.z = -1.1168f;
-		modelInstance.transform.setTranslation(xyz);
+		this.transform.setTranslation(xyz);
 
 
 		deltaRx = -100;
 
 		 
-			xyz = modelInstance.transform.getTranslation(xyz);
+			xyz = this.transform.getTranslation(xyz);
 
 		 
-			valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z + "rotate"+modelInstance.deltaRx ;
+			valoress ="x: "+ xyz.x + " y:"+ xyz.y + " z:" + xyz.z + "rotate"+this.deltaRx ;
 
 		 
 		 Gdx.app.log("FPSLogger", "paxina "+pagename +" pasa a ser case "+num+ " "+ valoress);
