@@ -24,9 +24,11 @@ import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight;
 import com.badlogic.gdx.graphics.g3d.environment.PointLight;
 import com.badlogic.gdx.graphics.g3d.model.Node;
 import com.badlogic.gdx.graphics.g3d.utils.CameraInputController;
+import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.muaki.vaca.simulations.Control;
+import com.muaki.vaca.tween.BookAnimationController;
 import com.muaki.vaca.tween.CMIAccessor;
 
 public class _DbgOfMainScreen implements Screen {
@@ -120,7 +122,7 @@ public class _DbgOfMainScreen implements Screen {
 		node.rotation.idt();
 		tres.calculateTransforms();
 		tres.pagename="p3";
-
+		
 		instances.add(tres);
 		
 		
@@ -214,6 +216,7 @@ public class _DbgOfMainScreen implements Screen {
 		node.rotation.idt();
 		cuberta.calculateTransforms();
 		cuberta.deltaRx=0;
+		cuberta.bookanimation.abrirtapa = true;
 		instances.add(cuberta);
 		
 		lombo = new ContoModelInstance(model, "lombo");
@@ -225,6 +228,8 @@ public class _DbgOfMainScreen implements Screen {
 		node.scale.set(1, 1, 1);
 		node.rotation.idt();
 		lombo.calculateTransforms();
+		lombo.bookanimation.abrirlombo = true;
+
 		instances.add(lombo);
 		
 		
@@ -240,13 +245,6 @@ public class _DbgOfMainScreen implements Screen {
 
 		
 
-			
-		
-			
-		
-		
-		
-		
 			
 		
 		
@@ -266,7 +264,7 @@ public class _DbgOfMainScreen implements Screen {
 
 	@Override
 	public void render(float delta) {
-		twman.update(delta);
+//		twman.update(delta);
 	
 		total += 1;
 		if (total > 500) {
@@ -292,9 +290,17 @@ public class _DbgOfMainScreen implements Screen {
 		modelBatch.begin(cam);
 		for (ModelInstance instance : instances) {
 			modelBatch.render(instance, lights);
-
 			if(crtl.CurrPax==0){
+//				queda así chuta moito mellor
 			abrirLibro();
+//			BookAnimationController.abrirLibro( cuberta, -100);
+//			BookAnimationController.abrirLibro( seis, -100);
+//			BookAnimationController.abrirLibro( cuatro, -100);
+//			BookAnimationController.abrirLibro( dos, -95);
+//			BookAnimationController.abrirLibro( lombo, -15);
+
+
+			
 			}
 			else if(crtl.CurrPax<crtl.PaxsTot){
 				rotaciondolibro();
@@ -302,6 +308,8 @@ public class _DbgOfMainScreen implements Screen {
 				pecharLibro();
 			}
 //			rotaciondolibro();
+			
+			
 
 		}
 
@@ -354,8 +362,8 @@ public class _DbgOfMainScreen implements Screen {
 			rotationtotal += incremento;
 		}	
 //		xyz = seis.transform.getTranslation(xyz);
-//		 Gdx.app.log("posicion seis ", ""+xyz.x + " "+xyz.y+" "+ xyz.z );
-		
+//		 Gdx.app.log("posicion seis ",""+cuberta.transform.getRotation(new Quaternion()).getAxisAngle(new Vector3().Y));
+
 	}
 	
 
@@ -415,12 +423,12 @@ public class _DbgOfMainScreen implements Screen {
 
 	@Override
 	public void show() {
-		twman = new TweenManager();
+//		twman = new TweenManager();
 		
 		
 		
 		
-		Tween.registerAccessor(ContoModelInstance.class, new CMIAccessor());
+//		Tween.registerAccessor(ContoModelInstance.class, new CMIAccessor());
 		
 		
 

@@ -15,8 +15,8 @@ public class Main {
 		cfg.vSyncEnabled = true;
 		
 
-//		new LwjglApplication(new CowSnail(), cfg);
-		new LwjglApplication(new TweenRotTest(), cfg);
+		new LwjglApplication(new CowSnail(), cfg);
+//		new LwjglApplication(new TweenRotTest(), cfg);
 
 
 	}

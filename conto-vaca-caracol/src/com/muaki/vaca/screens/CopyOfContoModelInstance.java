@@ -10,7 +10,7 @@ import com.badlogic.gdx.utils.Array;
 import com.muaki.vaca.tween.BookAnimation;
 import com.muaki.vaca.tween.BookAnimationController;
 
-public class ContoModelInstance extends ModelInstance{
+public class CopyOfContoModelInstance extends ModelInstance{
 	boolean libroaberto = false;
 	public float deltaRx;
 	int deltaY;
@@ -26,7 +26,7 @@ public class ContoModelInstance extends ModelInstance{
 
 
 
-	public ContoModelInstance(Model model, String... rootNodeIds) {
+	public CopyOfContoModelInstance(Model model, String... rootNodeIds) {
 		super(model, rootNodeIds);
 	}
 
